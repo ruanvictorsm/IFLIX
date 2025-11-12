@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFLIX - Login</title>
+  <link rel="stylesheet" href="/frontend/css/index.css">
+  <link rel="icon" href="/frontend/Imagens/logomarca.png">
+</head>
+
+<body>
+
+  <div class="conteudo">
+    <div class="ladoesquerdo"></div>
+
+
+    <div class="ladodireito">
+      <main>
+        <div class="container">
+          <div class="botaoform">
+            <div class="botaocor"></div>
+            <button id="botaologin" style="color: white;"><strong>Login</strong></button>
+            <button id="botaocadastre" style="color: white;"><strong>Cadastre-se</strong></button>
+          </div>
+
+          <form id="login">
+            <input type="text" placeholder="Matrícula" id="bm">
+            <input type="password" placeholder="Senha" id="bs" required>
+            <div id="senha">
+              <input type="checkbox" onclick="bs.type = this.checked ? 'text' : 'password'">
+              <legend>Mostrar senha</legend>
+            </div>
+            <button type="submit" value="Entrar">Entrar</button>
+          </form>
+
+          <form id="cadastrar">
+            <div class="ajustarmatri">
+              <input type="text" id="bmc" placeholder="Digite sua matrícula" required>
+            </div>
+
+            <div class="ajustarnome">
+              <input type="text" id="bnc" placeholder="Digite seu nome">
+            </div>
+
+            <div class="ajustarsenha">
+              <input type="password" placeholder="Senha" id="bsc" required>
+              <div id="senha">
+                <input type="checkbox" onclick="bs.type = this.checked ? 'text' : 'password'">
+                <legend>Mostrar senha</legend>
+              </div>
+            </div>
+
+            <p class="pc">Período que está cursando: </p>
+            <div class="radio">
+              <input type="radio" value="1°" id="p1a" name="pergunta1" required>
+              <label for="p1a">1°</label><br>
+              <input type="radio" value="2°" id="p1b" name="pergunta1" required>
+              <label for="p1b">2°</label><br>
+              <input type="radio" value="3°" id="p1c" name="pergunta1" required>
+              <label for="p1c">3°</label><br>
+              <input type="radio" value="4°" id="p1d" name="pergunta1" required>
+              <label for="p1d">4°</label><br>
+            </div>
+            <button id="cadast" type="submit" value="Cadastre-se">Cadastre-se</button>
+        </div>
+
+        </form>
+    </div>
+
+    </main>
+  </div>
+  </div>
+
+
+  <footer>
+    <a href="./logingerente.html">Login para Administradores</a>
+    <p id="conheca">Conheça o projeto IFLIX: <a href="./conheca.html">Sobre Nós</a></p>
+    <p class="pfooter">&copy; Todos os direitos reservados</p>
+  </footer>
+
+  <script src="scripts/index.js"></script>
+
+
+</body>
+
+</html>

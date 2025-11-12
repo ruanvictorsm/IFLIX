@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de Repertórios - IFLIX</title>
+    <link rel="icon" href="/frontend/Imagens/logomarca.png">
+    <link rel="stylesheet" href="/frontend/css/anotacoes.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Diário de Repertórios IFLIX</h1>
+        <p>Registre seus aprendizados e citações para turbinar sua redação do Enem!</p>
+
+        <textarea id="userNotes"
+            placeholder="Digite suas anotações aqui. Lembre-se de anotar o nome da obra escolhida (filme/série/livro), a ideia central e a relevância para temas sociais."></textarea>
+
+        <div class="button-container">
+            <button class="btn" id="imprimir">Salvar como PDF</button>
+            <button class="btn" onclick="clearNotes()">Limpar Anotações</button>
+            <button class="btn" onclick="history.back()">Voltar</button>
+        </div>
+
+        <div id="notes-to-print" style="display: none;"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.12.1/html2pdf.bundle.min.js"
+        integrity="sha512-D25Z8/1q2z65ZpJ3NzY6XiPZfwjhbv34OTQHDIZd+KPK+uWCovGt+fMkSzW8ArzCMFUgZt6Cdu7qoXNuy6a2GA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const imprimir = document.getElementById("imprimir");
+
+        function clearNotes() {
+            document.getElementById('userNotes').value = '';
+        }
+
+        imprimir.addEventListener("click", () => {
+            const notes = document.getElementById("userNotes").value.trim();
+
+            if (!notes) {
+                alert("Digite algo antes de gerar o PDF!");
+                return;
+            }
+
+            const printArea = document.createElement("div");
+            printArea.innerHTML = `
+            <h2 style="text-align:center; color:#333;">Diário de Repertório IFLIX</h2>
+            <pre style="white-space:pre-wrap; font-size:14px; font-family:Arial, sans-serif; color: black;">${notes}</pre>
+        `;
+
+            const options = {
+                margin: 10,
+                filename: "Diario_IFLIX.pdf",
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            };
+
+            html2pdf().set(options).from(printArea).save();
+        });
+    </script>
+
+</body>
+
+</html>

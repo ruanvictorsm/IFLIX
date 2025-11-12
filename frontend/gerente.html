@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFLIX - Admin</title>
+    <link rel="stylesheet" href="/frontend/css/gerente.css">
+    <link rel="icon" href="/frontend/Imagens/logomarca.png">
+</head>
+
+<body>
+
+    <aside class="lateral">
+        <div class="logo">IFLIX</div>
+
+        <div class="perfil">
+            <img src="/frontend/Imagens/adm.png" alt="Foto">
+            <span>Administrador</span>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li onclick="window.location.href= 'gerente.html';">🏠 Início</li>
+                <li onclick="window.location.href='obras.html'">📄 Obras</li>
+                <li onclick="window.location.href='usuarios.html';">🎓 Usuários</li>
+                <li onclick="window.location.href='temas.html';">🔍 Temas</li>
+                <li onclick="window.location.href='adminAnot.html'">🖊️ Anotações</li>
+                <li onclick="window.location.href='projeto.html';">🍿 Vitrine (Público)</li>
+                <li style="color: red" onclick="window.location.href='index.html';">🚪 Sair</li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="conteudo">
+        <div class="linha">
+            <section class="secao">
+                <h2>Minhas anotações</h2>
+                <div class="bloco azul">
+                    <p> falta: crud de editar na tela do usuario; telas do ver mais; central de ajuda; criar e ajustar
+                        os sql's; ajustar css das abas do gerente; possivelmente fazer um filtrar; aba de avaliações</p>
+                </div>
+            </section>
+
+            <section class="secao">
+                <div class="cartao notificar">
+                    <h3>Como adicionar novos conteúdos?</h3>
+                    <div class="botoes">
+                        <p>vai ter um video aq</p>
+                    </div>
+            </section>
+        </div>
+
+        <div class="linha">
+            <section class="secao">
+                <h2>Minhas pendências</h2>
+                <div class="bloco vermelho">
+                    <p><strong>50 Mensagens </strong>não lidas ainda nn decidimos
+                        https://www.dominiopublico.gov.br/pesquisa/PesquisaObraForm.jsp</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="linha">
+            <section class="secao ensino">
+                <div class="cartao">
+                    <h3>Manual do Administrador</h3>
+                    <div class="botoes">
+                        <a href="mailto:ruanvictorparelhas@gmail.com">Ruan Victor</a>
+                        <button>👤 Meus Dados</button>
+                        <button>📅 Agenda de Avaliações</button>
+                        <button>📍 Locais e Horários de Aula</button>
+                        <button>📄 Meus Requerimentos</button>
+                        <button>🔎 Minhas disciplinas mudar isso</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="secao servico">
+                <div class="cartao">
+                    <h3>Dúvidas ou problemas com o site? Entre em contato com a equipe de desenvolvimento.</h3>
+                    <div class="botoes">
+                        <button>E-mail Institucional mudar isso</button>
+                        <button>Microsoft Azure</button>
+                        <button>Portal Office 365</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="sec-crud" class="secao"
+            style="color:white; max-width:900px; margin:24px auto; background:#1b1b1b; border:1px solid #2a2a2a; border-radius:14px; padding:16px">
+            <h2 style="margin:0 0 10px 0">Adicionar Obras</h2>
+
+            <form id="form-cont"
+                style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; align-items:start">
+                <input id="titulo" placeholder="Título" required
+                    style="padding:10px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff; grid-column:span 2;">
+                <select name="Genero" id="selectgen"
+                    style="padding:10px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff;">
+                    <option value="">Gênero</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Comédia">Comédia</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Ficção Científica">Ficção Científica</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Policial">Policial</option>
+                    <option value="Mistério">Mistério</option>
+                    <option value="Fantasia">Fantasia</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Épico">Épico</option>
+                    <option value="Infantil">Infantil</option>
+                    <option value="Animação">Animação</option>
+                    <option value="Biografia/Autobiografia">Biografia/Autobiografia</option>
+                    <option value="Memórias">Memórias</option>
+                    <option value="Documentário">Documentário</option>
+                    <option value="História">História</option>
+                    <option value="Crônica/Diário/Cartas">Crônica/Diário/Cartas</option>
+                    <option value="Jornalismo">Jornalismo</option>
+                    <option value="Ensaios">Ensaios</option>
+                </select>
+                <select name="Tipo de obra" id="select"
+                    style="padding:10px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff;">
+                    <option value="">Tipo da Obra</option>
+                    <option value="Filme">Filme</option>
+                    <option value="Série">Série</option>
+                    <option value="Livro">Livro</option>
+                </select>
+
+                <div class="cartao notificar" style="grid-column: span 2; background-color: #121212;">
+                    <section class="secao">
+                        <h2>Eixos Temáticos</h2>
+                        <div class="bloco vermelho" style="border-style:solid;border-width:1px;">
+                            <p>Escolhas os temas que a obra aborda:</p>
+
+                            <button type="button" class="repbtn" value=""><strong>Desigualdade Social</strong></button>
+                            <button type="button" class="repbtn" value=""><strong>Pobreza</strong></button>
+                            <button type="button" class="repbtn" value=""><strong>Crime</strong></button>
+                            <button type="button" class="repbtn" value=""><strong>Mulheres</strong></button>
+                            <button type="button" class="repbtn" value=""><strong>Meio Ambiente</strong></button>
+                            <button type="button" popovertarget="modal" class="repbtn" value=""><strong>Ver
+                                    mais...</strong></button>
+                            <section>
+                                <div id="modal" popover style="
+                                    position: fixed;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    width: 600px;           
+                                    height: 600px;          
+                                    text-align: center;
+                                    background: #121212;
+                                    padding: 20px;
+                                    border-radius: 10px;
+                                    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+                                    overflow-y: auto;      
+                                    flex-direction: column;
+                                    align-items: center;
+                                    ">
+                                    <button type="button" popovertarget="modal"
+                                        style="background: transparent; border: none; font-size: x-large; color: red;"><svg
+                                            width="40px" height="100%" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></button>
+                                    <h2 style="color: #fff;">EIXOS TEMÁTICOS</h2>
+
+                                </div>
+                            </section>
+                            <small id="prefs-msg" style="display:block;margin-top:8px;opacity:.8"></small>
+                        </div>
+                    </section>
+                </div>
+                <input id="poster" placeholder="URL do poster/capa"
+                    style="padding:10px; margin-top: -100px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff; grid-column:span 2;">
+                <input id="trailer" placeholder="URL do trailer/booktrailer/resumo"
+                    style="padding:10px; margin-top: -60px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff; grid-column:span 2;">
+                <input id="resenha" placeholder="URL da resenha/audiobook/análise/filme"
+                    style="padding:10px; margin-top: -15px; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff; grid-column:span 2;">
+                <textarea id="descricao" placeholder="Digite aqui a descrição da obra selecionada."
+                    style="padding:10px; font-family: Arial, Helvetica, sans-serif; border-radius:10px; border:1px solid #2a2a2a; background:#121212; color:#fff; grid-column:span 2;"></textarea>
+                <strong>Disponível em:</strong><br>
+                <div style="display: flex; gap:10px; align-items: center;">
+                    <input type="checkbox" name="pergunta1" id="p1a" value="Netflix">
+                    <label for="p1a">Netflix</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1b" value="PV">
+                    <label for="p1b">Prime Video</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1c" value="Hbo">
+                    <label for="p1c">Hbo Max</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1d" value="Disney">
+                    <label for="p1d">Disney+</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1e" value="Globoplay">
+                    <label for="p1e">Globoplay</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1f" value="DP">
+                    <label for="p1f">Domínio Público</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1g" value="YT">
+                    <label for="p1g">Youtube</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1h" value="BibliotecaIF">
+                    <label for="p1h">Biblioteca IFRN</label><br>
+                    <input type="checkbox" name="pergunta1" id="p1i" value="Pago">
+                    <label for="p1i">Pago</label><br>
+                </div>
+                
+                <button type="submit"
+                    style="padding:10px 12px; margin-top: 0px; border-radius:10px; border:0; background:linear-gradient(120deg,#e50914,#f40612); color:#fff; font-weight:800; grid-column:span 2;">Inserir</button>
+            </form>
+        </section>
+
+        <div id="overlay" style="
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 5;
+        "></div>
+
+    </main>
+
+    <script src="/frontend/scripts/conteudo.js"></script>
+    <script>
+        const overlay = document.getElementById('overlay');
+
+        // Seleciona todos os elementos com atributo popover (ou seja, todos os modais)
+        const modais = document.querySelectorAll('[popover]');
+
+        modais.forEach(modal => {
+            // Mostra ou oculta o overlay conforme o estado do popover
+            modal.addEventListener('toggle', () => {
+                const algumAberto = Array.from(modais).some(m => m.matches(':popover-open'));
+                overlay.style.display = algumAberto ? 'block' : 'none';
+            });
+        });
+
+        // Se clicar no fundo, fecha o modal aberto
+        overlay.addEventListener('click', () => {
+            modais.forEach(m => m.hidePopover());
+        });
+
+    </script>
+</body>
+
+</html>

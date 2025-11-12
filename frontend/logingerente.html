@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFLIX - Login Admin</title>
+    <link rel="stylesheet" href="/frontend/css/logingerente.css">
+    <link rel="icon" href="/frontend/Imagens/logomarca.png">
+</head>
+
+<body>
+    <header>
+        <h1>Login AdmIFLIX</h1>
+    </header>
+    <main>
+        <form onsubmit="loginger(); return false;">
+          <fieldset>
+            <h3> Administrador </h3>
+            <input type="text" placeholder="Login" id="login"><br>
+            <input type="password" placeholder="Senha" id="senha"><br>
+            <input type="submit" style="background-color: goldenrod; margin: 10px; width: 25%;" value="Entrar">
+          </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <p>Volte para o login dos usuários: <a href="/frontend/index.html">Voltar</a></p>
+        <p>&copy Todos os direitos reservados</p>
+        <img src="Imagens/logomarca.png"alt="Imagem da logo no rodapé">
+    </footer>
+    <script>
+        function loginger() {
+            var login = document.getElementById('login').value;
+            var senha = document.getElementById('senha').value;
+
+            if (login == "admin" && senha == "admin") {
+            alert('Sucesso');
+            location.href = "/frontend/gerente.html";
+            } else {
+            alert('Usuário ou senha incorretos');
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@300..700&display=swap');
+
+* {
+    /*content box muda o conteudo dentro do botao e border box muda o tamanho geral do botao*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+}
+
+header {
+    padding: 2rem;
+    background-color: black;
+    text-align: center;
+}
+
+h1 {
+    color: goldenrod;
+    font-size: 80px;
+    font-weight: bolder;
+
+}
+
+.botaoconheca {
+    float: left;
+    cursor: pointer;
+    padding: 0 0.8rem;
+}
+
+.botaonotas {
+    float: left;
+    cursor: pointer;
+    padding: 0 0.8rem;
+    margin: 0 10px;
+}
+
+.botaosair {
+    float: right;
+    padding: 0 0.8rem;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+h2 {
+    padding: 10px;
+}
+
+img {
+    width: 10rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.IFLIX{
+    width: 280px; 
+    height: 100%;
+    padding: 0px;
+    /*background-color: aliceblue;*/
+    border: none;
+    border-radius: 0%;
+}
+
+#divfilmes {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
+}
+
+#divseries {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
+}
+
+#divlivros {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
+}
+
+footer {
+    margin-top: 10px;
+    padding: 2rem;
+    background-color: black;
+    text-align: center;
+}
+
+footer p {
+    color: whitesmoke;
+}
+
+.carousel-container {
+    position: relative;
+    width: 500px;
+    height: 940px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0.7;
+}
+
+/* SE DER ERRADO EXLUA ESSA PARTE ZINHA E REMOVA O ID*/
+
+/* .imgCarr{
+    min-height: 300px;
+} */
+
+.custom-carousel {
+    display: flex;
+    transition: transform 0.6s ease;
+    height: 100%;
+    width: 100%;
+}
+
+.custom-carousel>div {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.custom-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+.custom-carousel iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: black;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+
+.botao-ajuda {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: goldenrod;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.botao-ajuda:hover {
+    background-color: darkgoldenrod;
+    transform: scale(1.1);
+}

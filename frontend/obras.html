@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFLIX - Admin: Obras</title>
+    <link rel="icon" href="/frontend/Imagens/logomarca.png">
+    <style>
+    body{
+        background-color: rgb(21, 21, 20);
+        font-family: "Open Sans", sans-serif;
+        color: white;
+    }
+    </style>
+</head>
+
+<body>
+    <button onclick="history.back()">Voltar</button>
+    <div>
+        <table id="conteudos" border="1" cellpadding="5" style="margin: 0 auto; margin-top: 100px; text-align: center;">
+            <thead>
+                <tr>
+                    <th id="tituloh">Título</th>
+                    <th id="generoh">Gênero</th>
+                    <th id="tipoh">Tipo</th>
+                    <th id="urlh">Poster/Capa</th>
+                    <th id="opcoes" colspan="3">Opções</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+
+    <script src="/frontend/scripts/obras.js"></script>
+</body>
+</html>

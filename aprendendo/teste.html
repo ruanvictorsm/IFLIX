@@ -1,0 +1,203 @@
+<!-- IFLIX - Painel do Administrador (versão cinema) NÃO VAI SER UTILIZADO NO PROJETO -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>IFLIX - Admin</title>
+  <link rel="stylesheet" href="css/teste.css">
+  <link rel="icon" href="Imagens/logomarca.png">
+  <meta name="theme-color" content="#141414">
+</head>
+<body>
+
+  <aside class="lateral">
+    <div class="logo">IFLIX</div>
+
+    <div class="perfil">
+      <img src="Imagens/adm.png" alt="Foto">
+      <span>Administrador</span>
+    </div>
+
+    <div class="busca">
+      <input type="text" placeholder="Buscar menu">
+    </div>
+
+    <nav class="menu">
+      <ul>
+        <li onclick="window.location.href='gerente.html'">🏠 Início</li>
+        <details>
+          <summary>📄 Catálogo</summary>
+          <li onclick="document.getElementById('sec-crud').scrollIntoView({behavior:'smooth'})">🎥 Gerenciar filmes</li>
+          <li onclick="window.location.href='projeto.html'">🍿 Vitrine (público)</li>
+        </details>
+        <li onclick="alert('Em breve: gestão de usuários.')">🧑‍💼 Usuários</li>
+        <li onclick="alert('Em breve: relatórios e insights.')">📈 Insights</li>
+        <li style="color: #e50914" onclick="window.location.href='index.html'">🚪 Sair</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="conteudo">
+
+    <!-- ====== Novidades do catálogo ====== -->
+    <div class="linha">
+      <section class="secao">
+        <h2>Novidades do catálogo</h2>
+        <div class="bloco azul">
+          <p>
+            <strong id="novidades-num">0</strong> novos títulos adicionados nesta semana.
+            <br>
+            <small id="novidades-info" style="opacity:.85">Atualizado em tempo real com base nas inserções do banco.</small>
+          </p>
+          <div class="botoes" style="margin-top:10px">
+            <button class="cinza" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">Ver novidades</button>
+            <button class="cinza" onclick="window.location.href='projeto.html'">Abrir vitrine</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== Lançamentos & Tendências ====== -->
+      <section class="secao">
+        <div class="cartao">
+          <h3>Lançamentos & Tendências</h3>
+          <div class="botoes">
+            <button class="verde" onclick="document.getElementById('form-filme').scrollIntoView({behavior:'smooth'})">+ Adicionar título</button>
+            <button class="cinza" onclick="alert('Em breve: ranking semanal!')">Ranking semanal</button>
+            <button class="cinza" onclick="alert('Em breve: trailers automáticos!')">Trailer finder</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ====== Minhas preferências ====== -->
+    <div class="linha">
+      <section class="secao">
+        <h2>Minhas preferências</h2>
+        <div class="bloco vermelho" style="border-style:solid;border-width:1px;">
+          <p>Escolha seus estilos favoritos para personalizar as recomendações:</p>
+          <div class="botoes" id="chips-preferencias" style="margin-top:10px">
+            <!-- chips gerados pelo JS -->
+          </div>
+          <small id="prefs-msg" style="display:block;margin-top:8px;opacity:.8"></small>
+        </div>
+      </section>
+    </div>
+
+    <!-- ====== Explorar catálogos ====== -->
+    <div class="linha">
+      <section class="secao ensino">
+        <div class="cartao">
+          <h3>Explorar catálogos</h3>
+          <div class="botoes">
+            <button onclick="alert('Em breve: recomendações personalizadas!')">✨ Recomendações pra você</button>
+            <button onclick="alert('Em breve: hub Marvel!')">🦸 Universo Marvel</button>
+            <button onclick="alert('Em breve: hub DC!')">🦇 Universo DC</button>
+            <button onclick="alert('Em breve: hub de animes!')">🍥 Anime</button>
+            <button onclick="alert('Em breve: comédias em alta!')">😂 Comédia</button>
+            <button onclick="alert('Em breve: lista de clássicos!')">🎞 Clássicos</button>
+            <button onclick="alert('Em breve: docs imperdíveis!')">🎬 Documentários</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao servico">
+        <div class="cartao">
+          <h3>Ferramentas do cinéfilo</h3>
+          <div class="botoes">
+            <button onclick="alert('Em breve: sua watchlist!')">📝 Lista de desejos</button>
+            <button onclick="alert('Em breve: histórico inteligente!')">🕒 Histórico</button>
+            <button onclick="alert('Em breve: exportação CSV!')">📤 Exportar catálogo</button>
+            <button onclick="alert('Em breve: modo apresentação!')">🖥 Modo apresentação</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ====== CRUD de Filmes ====== -->
+    <section id="sec-crud" class="secao" style="max-width:900px;margin:24px auto;background:#1b1b1b;border:1px solid #2a2a2a;border-radius:14px;padding:16px">
+      <h2 style="margin:0 0 10px 0">Gerenciar filmes</h2>
+
+      <form id="form-filme" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start">
+        <input id="titulo" placeholder="Título" required style="padding:10px;border-radius:10px;border:1px solid #2a2a2a;background:#121212;color:#fff;grid-column:span 2;">
+        <input id="genero" placeholder="Gênero" style="padding:10px;border-radius:10px;border:1px solid #2a2a2a;background:#121212;color:#fff;">
+        <input id="ano" type="number" placeholder="Ano" style="padding:10px;border-radius:10px;border:1px solid #2a2a2a;background:#121212;color:#fff;">
+        <input id="poster" placeholder="URL do poster" style="padding:10px;border-radius:10px;border:1px solid #2a2a2a;background:#121212;color:#fff;grid-column:span 2;">
+        <button type="submit" style="padding:10px 12px;border-radius:10px;border:0;background:linear-gradient(120deg,#e50914,#f40612);color:#fff;font-weight:800;grid-column:span 2;">Inserir</button>
+      </form>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+        <h3 style="margin:0;font-size:16px;color:#ddd">Catálogo</h3>
+        <button id="btn-recarregar" style="padding:8px 12px;border-radius:10px;border:1px solid #2a2a2a;background:#242424;color:#fff;">Recarregar</button>
+      </div>
+
+      <div id="lista" style="margin-top:10px;color:#ddd"></div>
+    </section>
+
+    <section style="max-width:1100px;margin:16px auto">
+      <h3 style="margin:0 0 10px 0;font-size:16px;color:#ddd">Prévia em cards</h3>
+      <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div>
+    </section>
+    <!-- ====== /CRUD de Filmes ====== -->
+
+  </main>
+
+  <!-- Reutiliza o app.js para CRUD -->
+  <script src="app.js" defer></script>
+
+  <!-- Script leve para novidades da semana + preferências -->
+  <script>
+    // Conta quantos títulos foram criados nos últimos 7 dias
+    async function atualizarNovidades() {
+      try {
+        const res = await fetch('/api/filmes');
+        const filmes = await res.json();
+        const agora = new Date();
+        const seteDias = 7 * 24 * 60 * 60 * 1000;
+        const novos = (filmes || []).filter(f => {
+          const d = f.criado_em ? new Date(f.criado_em) : null;
+          return d && (agora - d) <= seteDias;
+        });
+        document.getElementById('novidades-num').textContent = novos.length;
+        document.getElementById('novidades-info').textContent =
+          novos.length > 0 ? 'Tem novidade fresquinha no catálogo! 🎬' : 'Sem novidades nos últimos 7 dias.';
+      } catch(e){
+        console.warn('Falha ao obter novidades:', e);
+      }
+    }
+
+    // Preferências com localStorage (chips clicáveis)
+    const OPCOES_PREFS = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Romance', 'Anime', 'Documentário', 'Marvel', 'DC'];
+    function montarChipsPreferencias(){
+      const el = document.getElementById('chips-preferencias');
+      if (!el) return;
+      el.innerHTML = '';
+      const prefsSalvas = new Set(JSON.parse(localStorage.getItem('iflix_prefs') || '[]'));
+      OPCOES_PREFS.forEach(nome => {
+        const b = document.createElement('button');
+        b.textContent = nome;
+        b.className = 'cinza';
+        b.style.borderRadius = '999px';
+        b.style.border = '1px solid #333';
+        b.style.background = prefsSalvas.has(nome) ? '#262626' : '#1f1f1f';
+        b.style.color = '#fff';
+        b.onclick = () => {
+          if (prefsSalvas.has(nome)) prefsSalvas.delete(nome); else prefsSalvas.add(nome);
+          localStorage.setItem('iflix_prefs', JSON.stringify([...prefsSalvas]));
+          montarChipsPreferencias();
+        };
+        el.appendChild(b);
+      });
+      const msg = document.getElementById('prefs-msg');
+      if (msg) {
+        const arr = [...prefsSalvas];
+        msg.textContent = arr.length ? 'Preferências salvas: ' + arr.join(', ') : 'Nenhuma preferência selecionada.';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      atualizarNovidades();
+      montarChipsPreferencias();
+    });
+  </script>
+</body>
+</html>
