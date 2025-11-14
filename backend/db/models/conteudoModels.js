@@ -23,7 +23,7 @@ export async function getConteudoById(id) {
 }
 
 // Adicionar novo conteúdo 
-export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha) {
+export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao) {
   try {
     const consulta = await pool.query(
       `INSERT INTO conteudo (titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao)

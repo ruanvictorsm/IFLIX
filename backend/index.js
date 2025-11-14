@@ -107,7 +107,7 @@ APP.get("/api/conteudo", async (req, res) => {
 
 //  POST: Adicionar novo Conteúdo 
 APP.post("/api/conteudo", async (req, res) => {
-    const { titulo, tipo, genero, url, trailer, resenha, descricao, matricula_ger } = req.body;
+    const { titulo, tipo, genero,matricula_ger, url, trailer, resenha, descricao} = req.body;
 
     if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !matricula_ger) {
         console.error("Dados faltantes no POST:", req.body); 
