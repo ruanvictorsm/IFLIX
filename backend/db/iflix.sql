@@ -1,7 +1,5 @@
 create table gerente(
 matricula_ger VARCHAR(20) primary key,
-nome_ger VARCHAR(255),
-senha_ger VARCHAR(10)
 );
 
 create table usuario(

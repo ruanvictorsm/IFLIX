@@ -7,32 +7,54 @@
     <title>IFLIX - Admin: Obras</title>
     <link rel="icon" href="/frontend/Imagens/logomarca.png">
     <style>
-    body{
-        background-color: rgb(21, 21, 20);
-        font-family: "Open Sans", sans-serif;
-        color: white;
-    }
+        body {
+            background-color: rgb(21, 21, 20);
+            font-family: "Open Sans", sans-serif;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: goldenrod;
+            font-size: large;
+            color: var(--primary-bg);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 0 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: gold;
+            transform: translateY(-2px);
+            color: var(--primary-bg);
+        }
     </style>
 </head>
 
 <body>
-    <button onclick="history.back()">Voltar</button>
+    <button onclick="history.back()" class="btn">Voltar</button>
     <div>
-        <table id="conteudos" border="1" cellpadding="5" style="margin: 0 auto; margin-top: 100px; text-align: center;">
+        <table id="conteudos" border="1" cellpadding="7"
+            style="margin: 0 auto; margin-top: 100px; text-align: center; border-collapse: collapse;">
             <thead>
                 <tr>
-                    <th id="tituloh">Título</th>
-                    <th id="generoh">Gênero</th>
-                    <th id="tipoh">Tipo</th>
-                    <th id="urlh">Poster/Capa</th>
-                    <th id="opcoes" colspan="3">Opções</th>
+                    <th id="tituloh" style="background-color: goldenrod;">Título</th>
+                    <th id="generoh" style="background-color: goldenrod;">Gênero</th>
+                    <th id="tipoh" style="background-color: goldenrod;">Tipo</th>
+                    <th id="urlh" style="background-color: goldenrod;">Poster/Capa</th>
+                    <th id="opcoes" colspan="3" style="background-color: goldenrod;">Opções</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
-    
+
 
     <script src="/frontend/scripts/obras.js"></script>
 </body>
+
 </html>

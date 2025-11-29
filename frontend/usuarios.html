@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +8,55 @@
     <title>IFLIX - Admin: Usuários</title>
 
     <style>
+        body {
+            background-color: rgb(21, 21, 20);
+            font-family: "Open Sans", sans-serif;
+            color: white;
+        }
 
-    body{
-        background-color: rgb(21, 21, 20);
-        font-family: "Open Sans", sans-serif;
-        color: white;
-    } 
+        .btn {
+            display: inline-block;
+            background-color: goldenrod;
+            font-size: large;
+            color: var(--primary-bg);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 0 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: gold;
+            transform: translateY(-2px);
+            color: var(--primary-bg);
+        }
     </style>
 </head>
+
 <body>
-    <button onclick="window.location.href= 'gerente.html';">Sair</button>
-    <div class="botoes">
-        <button onclick="">Todos</button>
-        <button onclick="">1°</button>
-        <button onclick="">2°</button>
-        <button onclick="">3°</button>
-        <button onclick="">4°</button>
-    </div>
+    <button onclick="window.location.href= 'gerente.html';" class="btn">Voltar</button>
     <div>
-    <table id="usuarios" border="1" cellpadding="5" style="margin: 0 auto; margin-top: 100px; text-align: center;">
-        <thead>
-            <tr>
-                <th id="matriculah">Matrícula</th>
-                <th id="nomeh">Nome</th>
-                <th id="senhah">Senha</th>
-                <th id="anoh">Ano</th>
-                <th id="opcoes" colspan="3">Opções</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        
-    </table>
-    </div>  
-    
+        <table id="usuarios" border="1" cellpadding="7"
+            style="margin: 0 auto; margin-top: 100px; text-align: center; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th id="matriculah" style="background-color: goldenrod;">Matrícula</th>
+                    <th id="nomeh" style="background-color: goldenrod;">Nome</th>
+                    <th id="senhah" style="background-color: goldenrod;">Senha</th>
+                    <th id="anoh" style="background-color: goldenrod;">Ano</th>
+                    <th id="opcoes" colspan="3" style="background-color: goldenrod;">Opções</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+
+        </table>
+    </div>
+
     <script src="scripts/script.js"></script>
 
 </body>
+
 </html>
