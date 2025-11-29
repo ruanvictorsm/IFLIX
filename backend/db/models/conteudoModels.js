@@ -23,13 +23,13 @@ export async function getConteudoById(id) {
 }
 
 // Adicionar novo conteúdo 
-export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao) {
+export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas) {
   try {
     const consulta = await pool.query(
-      `INSERT INTO conteudo (titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      `INSERT INTO conteudo (titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
        RETURNING *`,
-      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao]
+      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas]
     );
     return consulta.rows[0];
   } catch (err) {
@@ -39,7 +39,7 @@ export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trai
 }
 
 // Atualizar conteúdo existente
-export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao }) {
+export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas}) {
   try {
     const consulta = await pool.query(
       `UPDATE conteudo SET
@@ -50,10 +50,11 @@ export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, 
          url = COALESCE($5, url),
          trailer = COALESCE($6, trailer),
          resenha = COALESCE($7, resenha),
-         descricao = COALESCE($8, descricao)
-       WHERE id_cont = $9
+         descricao = COALESCE($8, descricao),
+         plataformas = COALESCE($9, plataformas)
+       WHERE id_cont = $10
        RETURNING *`,
-      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, id]
+      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, id]
     );
     return consulta.rows[0] || null;
   } catch (err) {

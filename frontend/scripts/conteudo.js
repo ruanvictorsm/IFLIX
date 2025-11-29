@@ -11,6 +11,9 @@ const textarea = document.getElementById("descricao");
 formcont.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const plataformasSelecionadas = [...document.querySelectorAll('input[name="pergunta1"]:checked')]
+        .map(e => e.value);
+
     const novoConteudo = {
         titulo: inputTitulo.value,
         genero: inputGenero.value,
@@ -19,11 +22,12 @@ formcont.addEventListener('submit', function(e) {
         trailer: inpuTrailer.value,
         resenha: inputResenha.value,
         descricao: textarea.value,
+        plataformas: plataformasSelecionadas,
         matricula_ger: 2023
     };
 
-    if (!novoConteudo.titulo || !novoConteudo.tipo || !novoConteudo.genero || !novoConteudo.url || !novoConteudo.trailer || !novoConteudo.resenha || !novoConteudo.descricao) {
-        alert("Por favor, preencha Título, Gênero, Tipo, Url do poster, Url da trailer, Url do resumo/resenha/filme e a descrição.");
+    if (!novoConteudo.titulo || !novoConteudo.tipo || !novoConteudo.genero || !novoConteudo.url || !novoConteudo.trailer || !novoConteudo.resenha || !novoConteudo.descricao || novoConteudo.plataformas.length === 0) {
+        alert("Por favor, preencha todos os campos necessários.");
         return;
     }
 

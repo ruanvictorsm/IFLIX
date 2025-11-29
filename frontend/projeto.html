@@ -196,7 +196,7 @@
                         document.getElementById('modal-genero').textContent = item.genero || '';
                         document.getElementById('modal-descricao').textContent = item.descricao || 'Sem descrição.';
                         document.getElementById('modal-anotacoes').href = 'anotacoes.html?id=' + item.id;
-                        document.getElementById('modal-disponivel').textContent = 'Disponível na: ' + (item.disponivel || 'N');
+                        document.getElementById('modal-disponivel').textContent = 'Disponível na: ' + (item.plataformas || 'Plataforma não inserida');
 
                         const carousel = document.getElementById('modal-carousel');
                         carousel.innerHTML = '';
@@ -204,8 +204,6 @@
                         const slides = [];
 
                         // Slide 1 - imagem principal
-
-                        //REMOVA A CLASSE SE DER ERRDO DNV
                         slides.push(`<div class="imgCarr"><img src="${item.url}" alt="Imagem da obra"></div>`);
 
                         // Slide 2 - vídeo 1 (trailer)
@@ -218,7 +216,6 @@
                             slides.push(`<div><iframe src="${item.resenha}" frameborder="0" REFERRERPOLICY="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`);
                         }
 
-                        // Insere os slides no container
                         carousel.innerHTML = slides.join('');
 
                         // ====== Lógica do carrossel manual ======
@@ -244,7 +241,6 @@
                         modal2.style.display = 'flex';
                         overlay.style.display = 'block';
 
-                        // Garante que começa no slide 0
                         updateCarousel();
                     });
 
