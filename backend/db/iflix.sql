@@ -34,7 +34,7 @@ foreign key (matricula) references usuario(matricula),
 foreign key (id_cont) references conteudo(id_cont)
 );
 
-create table eixo_tematico(
+create table eixo_tematico( possivelmente iremos tirar esse
 id_tema SERIAL primary key,
 tema VARCHAR(255),
 matricula_ger VARCHAR(20),

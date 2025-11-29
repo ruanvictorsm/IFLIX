@@ -83,7 +83,6 @@ cadastrar.addEventListener('submit', function (e) {
         matricula_ger: 2023
     };
 
-    // Verifica campos obrigatórios
     if (!novoUsuario.matricula || !novoUsuario.nome || !novoUsuario.senha) {
         alert("Por favor, preencha Matrícula, Nome e Senha.");
         return;

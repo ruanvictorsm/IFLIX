@@ -1,5 +1,5 @@
 import express from "express";
-import { addUsuario, getAllUsers, excluirUsuario } from "./db/models/userModels.js";
+import { addUsuario, getAllUsers, excluirUsuario, updateUsuario } from "./db/models/userModels.js";
 import { getAllConteudo, addConteudo, excluirConteudo, updateConteudo } from "./db/models/conteudoModels.js";
 import cors from 'cors';
 
@@ -23,52 +23,52 @@ APP.get("/api/usuarios", async (req, res) => {
 
 // POST: Adicionar novo Usuário 
 APP.post("/api/usuario", async (req, res) => {
-    // Se req.body estiver undefined, o middleware express.json() não foi executado.
-    const { matricula, nome, senha, matricula_ger, ano } = req.body;
+  // Se req.body estiver undefined, o middleware express.json() não foi executado.
+  const { matricula, nome, senha, matricula_ger, ano } = req.body;
 
-    if (!matricula || !nome || !senha || !matricula_ger || !ano) {
-        // Log para depuração
-        console.error("Dados faltantes no POST:", req.body); 
-        return res.status(400).json({ mensagem: "Matrícula, Nome, Senha, ano e Matrícula do Gerente são obrigatórios." });
+  if (!matricula || !nome || !senha || !matricula_ger || !ano) {
+    // Log para depuração
+    console.error("Dados faltantes no POST:", req.body);
+    return res.status(400).json({ mensagem: "Matrícula, Nome, Senha, ano e Matrícula do Gerente são obrigatórios." });
+  }
+
+  try {
+    const novo = await addUsuario(matricula, nome, senha, matricula_ger, ano);
+    if (novo) {
+      res.status(201).json(novo);
+    } else {
+      res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
     }
 
-    try {
-        const novo = await addUsuario(matricula, nome, senha, matricula_ger, ano);
-        if (novo) {
-             res.status(201).json(novo);
-        } else {
-             res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
-        }
-       
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({mensagem: "Erro interno do servidor ao adicionar conteúdo."});
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ mensagem: "Erro interno do servidor ao adicionar conteúdo." });
+  }
 });
 
 // POST: Login
 APP.post("/api/login", async (req, res) => {
-    const { matricula, senha } = req.body;
+  const { matricula, senha } = req.body;
 
-    if (!matricula || !senha) {
-        return res.status(400).json({ mensagem: "Matrícula e senha são obrigatórios." });
+  if (!matricula || !senha) {
+    return res.status(400).json({ mensagem: "Matrícula e senha são obrigatórios." });
+  }
+
+  try {
+    // Função que busca usuário por matrícula
+    const users = await getAllUsers();
+    const usuario = users.find(u => u.matricula === matricula && u.senha === senha);
+
+    if (!usuario) {
+      return res.status(401).json({ mensagem: "Matrícula ou senha incorretos." });
     }
 
-    try {
-        // Função que busca usuário por matrícula
-        const users = await getAllUsers();
-        const usuario = users.find(u => u.matricula === matricula && u.senha === senha);
-
-        if (!usuario) {
-            return res.status(401).json({ mensagem: "Matrícula ou senha incorretos." });
-        }
-
-        // retornar dados do usuário
-        res.status(200).json({ mensagem: "Login realizado com sucesso!", usuario });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ mensagem: "Erro interno ao realizar login." });
-    }
+    // retornar dados do usuário
+    res.status(200).json({ mensagem: "Login realizado com sucesso!", usuario });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ mensagem: "Erro interno ao realizar login." });
+  }
 });
 
 // Rota DELETE usando a função importada
@@ -90,42 +90,62 @@ APP.delete("/api/usuarios/:matricula", async (req, res) => {
   }
 });
 
+// PUT: Atualizar
+APP.put("/api/usuarios/:matricula", async (req, res) => {
+  const matricula = req.params.matricula;
+  const { nome, senha, ano } = req.body;
+
+  try {
+    const usuarioAtualizado = await updateUsuario(matricula, nome, senha, ano);
+
+    if (!usuarioAtualizado) {
+      return res.status(404).json({ mensagem: "Usuário não encontrado!" });
+    }
+
+    res.json({ mensagem: "Usuário atualizado com sucesso!", usuario: usuarioAtualizado });
+
+  } catch (err) {
+    console.error("Erro ao atualizar:", err);
+    res.status(500).json({ mensagem: "Erro ao atualizar usuário." });
+  }
+});
+
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
 
 // GET: Listar todos os Conteúdos
 APP.get("/api/conteudo", async (req, res) => {
-    try {
-        const conteudos = await getAllConteudo();
-        res.json(conteudos);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({mensagem: "Erro ao buscar conteúdos"});
-    }
+  try {
+    const conteudos = await getAllConteudo();
+    res.json(conteudos);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ mensagem: "Erro ao buscar conteúdos" });
+  }
 });
 
 //  POST: Adicionar novo Conteúdo 
 APP.post("/api/conteudo", async (req, res) => {
-    const { titulo, tipo, genero,matricula_ger, url, trailer, resenha, descricao, plataformas} = req.body;
+  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas } = req.body;
 
-    if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !plataformas || !matricula_ger) {
-        console.error("Dados faltantes no POST:", req.body); 
-        return res.status(400).json({ mensagem: "Título, Tipo, Gênero, Url do poster, Url da trailer, Url da resenha, descrição, plataformas e Matrícula do Gerente são obrigatórios." });
+  if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !plataformas || !matricula_ger) {
+    console.error("Dados faltantes no POST:", req.body);
+    return res.status(400).json({ mensagem: "Título, Tipo, Gênero, Url do poster, Url da trailer, Url da resenha, descrição, plataformas e Matrícula do Gerente são obrigatórios." });
+  }
+
+  try {
+    const novo = await addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas);
+    if (novo) {
+      res.status(201).json(novo);
+    } else {
+      res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
     }
 
-    try {
-        const novo = await addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas);
-        if (novo) {
-             res.status(201).json(novo);
-        } else {
-             res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
-        }
-       
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({mensagem: "Erro interno do servidor ao adicionar conteúdo."});
-    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ mensagem: "Erro interno do servidor ao adicionar conteúdo." });
+  }
 });
 
 // Rota DELETE usando a função importada
@@ -175,8 +195,6 @@ APP.put("/api/conteudo/:id_cont", async (req, res) => {
   }
 });
 
-
-// Inicialização do Servidor (Única vez) 
 APP.listen(PORT, () => {
-    console.log("Servidor rodando em:", "http://localhost:" + PORT);
+  console.log("Servidor rodando em:", "http://localhost:" + PORT);
 });

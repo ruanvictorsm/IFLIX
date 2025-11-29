@@ -64,6 +64,9 @@ function editarConteudo(conteudo) {
 
   const novaDescricao = prompt("Nova descrição da obra:", conteudo.descricao);
   if (novaDescricao === null) return;
+  
+  const novasPlataformas = prompt("Nova(s) plataforma(s) da obra:", conteudo.plataformas);
+  if (novasPlataformas === null) return;
 
 
   const dadosAtualizados = {
@@ -74,6 +77,7 @@ function editarConteudo(conteudo) {
     trailer: novoTrailer,
     resenha: novaResenha,
     descricao: novaDescricao,
+    plataformas: novasPlataformas,
     matricula_ger: conteudo.matricula_ger || 2023,
   };
 

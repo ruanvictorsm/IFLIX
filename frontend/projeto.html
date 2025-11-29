@@ -51,7 +51,7 @@
                 <p id="ano"></p>
 
 
-                <button>Editar dados</button>
+                <button id="btn-editar">Editar dados</button>
                 <button id="btn-apagar-conta">Apagar sua conta</button>
             </div>
         </section>
@@ -298,7 +298,60 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+            const botaoEditar = document.getElementById("btn-editar");
 
+            if (botaoEditar) {
+                botaoEditar.addEventListener("click", () => {
+                    editarusuario(usuarioLogado);
+                });
+            }
+        });
+    </script>
+    <script>
+        function editarusuario(usuario) {
+
+            const novoNome = prompt("Novo nome:", usuario.nome);
+            if (novoNome === null) return;
+
+            const novaSenha = prompt("Nova senha:", usuario.senha);
+            if (novaSenha === null) return;
+
+            const novoAno = prompt("Período que está cursando:", usuario.ano);
+            if (novoAno === null) return;
+
+            const dadosAtualizados = {
+                nome: novoNome,
+                senha: novaSenha,
+                ano: novoAno
+            }; 
+
+            fetch(`http://localhost:3000/api/usuarios/${usuario.matricula}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dadosAtualizados),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert("Dados atualizados com sucesso!");
+
+                    // Atualiza os dados do localStorage para exibir os novos na tela
+                    usuario.nome = novoNome;
+                    usuario.senha = novaSenha;
+                    usuario.ano = novoAno;
+                    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
+                    location.reload(); // Atualiza visualmente
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Erro ao atualizar usuário.");
+                });
+        }
+
+    </script>
 </body>
 
 </html>

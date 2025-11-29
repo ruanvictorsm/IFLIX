@@ -43,18 +43,16 @@ export async function addUsuario(matricula, nome, senha, matricula_ger, ano) {
 }
 
 // Atualizar usuário existente
-export async function updateUsuario(matricula, nome, senha, matricula_ger, ano) {
+export async function updateUsuario(matricula, nome, senha, ano) {
   try {
     const consulta = await pool.query(
       `UPDATE usuario SET
-         matricula = COALESCE($1, matricula),
-         nome = COALESCE($2, nome),
-         senha = COALESCE($3, senha),
-         matricula_ger = COALESCE($4, matricula_ger),
-         ano = COALESCE($5, ano)
-       WHERE id_cont = $6
+         nome = COALESCE($1, nome),
+         senha = COALESCE($2, senha),
+         ano = COALESCE($3, ano)
+       WHERE matricula = $4
        RETURNING *`,
-      [matricula ?? null, nome ?? null, senha ?? null, matricula_ger ?? null, nome ?? null, id]
+      [nome, senha, ano, matricula] 
     );
     return consulta.rows[0] || null;
   } catch (err) {
