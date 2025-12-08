@@ -12,13 +12,7 @@ Este site foi desenvolvido com o objetivo de **auxiliar estudantes** que têm o 
 
 ## Como foi desenvolvido?
 
-*Texto a definir*
-
----
-
-## Funcionalidades
-
-*Texto a definir*
+O site foi programado com o auxílio de ferramentas programáveis, como a linguagem **JavaScript**. Também foram utilizadas as linguagens de marcação: **HTML e CSS**, no front-end. A página teve o auxílio e orientação do professor de língua portuguesa, *Kléber José*, que acompanhou todo o processo de desenvolvimento e encabeçou as ideias principais. O front-end e back-end foram desenvolvidos majoritariamente pelo discente Ruan Victor, que desenvolveu as janelas principais. Já as janelas que fazem parte do "Conheça", "Ver mais" e a central de ajuda da página "Projeto" foram desenvolvidas pela discente Lívia Cristina, que também coordenou os textos e o design ilustrativo deste site.  
 
 ---
 
