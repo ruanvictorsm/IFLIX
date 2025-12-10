@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFLIX: Filmes</title>
     <link rel="icon" href="/frontend/Imagens/logomarca.png">
-</head>
-<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        .btn {
+            display: inline-block;
+            background-color: goldenrod;
+            font-size: large;
+            color: var(--primary-bg);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 10px 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: gold;
+            transform: translateY(-2px);
+            color: var(--primary-bg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <button onclick="window.location.href='projeto.html';" class="btn">Voltar</button>    IFLIX 
+    </header>
+
+    
 </body>
+
 </html>
