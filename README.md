@@ -16,6 +16,12 @@ O site foi programado com o auxílio de ferramentas programáveis, como a lingua
 
 ---
 
+## Como utilizar a plataforma (para administradores)?
+
+*Texto a definir*
+
+---
+
 ## Desenvolvido por:
 
 - **Ruan Victor**
