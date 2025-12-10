@@ -1,5 +1,5 @@
 create table gerente(
-matricula_ger VARCHAR(20) primary key,
+matricula_ger VARCHAR(20) primary key
 );
 
 create table usuario(
@@ -21,7 +21,7 @@ url VARCHAR(1000),
 trailer VARCHAR(1000),
 resenha VARCHAR(1000),
 descricao TEXT,
-disponivel VARCHAR(100),XXXXX
+disponivel TEXT,
 foreign key (matricula_ger) references gerente(matricula_ger)
 );
 
