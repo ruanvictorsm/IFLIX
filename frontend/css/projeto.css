@@ -111,12 +111,6 @@ footer p {
     flex-shrink: 0.7;
 }
 
-/* SE DER ERRADO EXLUA ESSA PARTE ZINHA E REMOVA O ID*/
-
-/* .imgCarr{
-    min-height: 300px;
-} */
-
 .custom-carousel {
     display: flex;
     transition: transform 0.6s ease;

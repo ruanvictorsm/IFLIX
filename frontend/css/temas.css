@@ -23,5 +23,4 @@
 .btn:hover {
     background-color: gold;
     transform: translateY(-2px);
-    color: var(--primary-bg);
 }

@@ -18,7 +18,24 @@ O site foi programado com o auxílio de ferramentas programáveis, como a lingua
 
 ## Como utilizar a plataforma (para administradores)?
 
-*Texto a definir*
+Usuário do login para administradores: admin
+Senha do login para administradores: admin
+
+---
+
+## Como utilizar no vscode?
+
+Instalar dependências
+No backend do projeto:
+
+cd backend
+
+npm install express pg (não lembro se tem outra)
+
+node index (para funcionar o código)
+
+Ctrl + C (para desligar o servidor)
+
 
 ---
 
