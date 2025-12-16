@@ -67,14 +67,18 @@
             display: block;
         }
 
-        .botao {
+        a {
             text-align: center;
-            width: 120px;
-            height: 25px;
-            border: 2px solid gray;
             font-family: "Cabin", sans-serif;
             cursor: pointer;
             margin-left: 10px;
+            color: #ffffff;
+            text-decoration: none;
+
+        }
+
+        a:hover {
+            color: goldenrod;
         }
 
         .carousel-container {
@@ -152,11 +156,12 @@
 </head>
 
 <body>
-    <header style="display: flex; justify-content: left;"><img src="/frontend/Imagens/IFLIX.png" alt="Logo"
-            style="width: 250px;">
-        <button class="botao" onclick="window.location.href='anotacoes.html';">Bloco de Notas</button>
-        <button class="botao">teste</button>
-        
+    <header style="display: flex; justify-content: left;">
+        <img src="/frontend/Imagens/IFLIX.png" alt="Logo" style="width: 250px;" onclick="window.location.href='projeto.html';">
+        <a href="/frontend/anotacoes.html">Bloco de notas</a>
+        <a href="/frontend/conheca.html">Conheça o IFLIX</a>
+        <a href="/frontend/projeto.html"> Voltar para a página inicial</a>
+        <a href="/frontend/index.html">Sair da plataforma</a>
 
     </header>
 
@@ -229,7 +234,6 @@
     </div>
     </div>
 
-    <footer> </footer>
 
     <script>
         fetch("http://localhost:3000/api/conteudo")
