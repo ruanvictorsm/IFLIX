@@ -30,7 +30,7 @@ No backend do projeto:
 
 cd backend
 
-npm install express pg (não lembro se tem outra)
+npm install express pg cors dotenv (acho q o dotenv não tem utilidade)
 
 node index (para funcionar o código)
 
