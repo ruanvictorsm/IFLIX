@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@300..700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            font-family: "Cabin", sans-serif;
+            font-weight: 400;
+
+        }
+
+        header {
+            padding: 1.5rem;
+            background-color: black;
+            text-align: center;
+            color: white;
+
+        }
+
+        .btn {
+            border: 2px solid black;
+
+        }
+
+        img {
+            width: 10rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card-obra {
+            width: 10rem;
+            height: 250px;
+            border: 2px solid black;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card-obra:hover {
+            transform: scale(1.04);
+        }
+
+        .card-obra img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+
+        a {
+            text-align: center;
+            font-family: "Cabin", sans-serif;
+            cursor: pointer;
+            margin-left: 10px;
+            color: #ffffff;
+            text-decoration: none;
+
+        }
+
+        a:hover {
+            color: goldenrod;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 500px;
+            height: 940px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0.7;
+        }
+
+        .custom-carousel {
+            display: flex;
+            transition: transform 0.6s ease;
+            height: 100%;
+            width: 100%;
+        }
+
+        .custom-carousel>div {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .custom-carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .custom-carousel iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            color: black;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 50%;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
