@@ -2,8 +2,8 @@ import {Pool} from 'pg';
 
 export const pool = new Pool({
     user: 'postgres',
-    password: 'pabd',
+    password: '123',
     host: 'localhost',
     database: 'iflix',
-    port: 5432
+    port: 5433
 });

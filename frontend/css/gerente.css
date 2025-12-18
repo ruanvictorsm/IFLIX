@@ -187,3 +187,147 @@ input[type="checkbox"]{
     accent-color: goldenrod;
     cursor: pointer;
 }
+
+/* =========================
+   RESPONSIVIDADE TOTAL 
+   ========================= */
+
+/* RESET FLEX PARA MOBILE */
+@media (max-width: 1024px) {
+    body {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .lateral {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .menu li {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
+    .conteudo {
+        padding: 20px;
+    }
+
+    .linha {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .ensino,
+    .servico {
+        position: static;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/* 📱 CELULAR */
+@media (max-width: 600px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .perfil span {
+        display: none;
+    }
+
+    .menu ul {
+        justify-content: center;
+    }
+
+    .menu li {
+        font-size: 12px;
+    }
+
+    .cartao,
+    #sec-crud {
+        padding: 14px;
+    }
+
+    form {
+        grid-template-columns: 1fr !important;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+        width: 100%;
+    }
+
+    .bloco {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ⌚ RELÓGIO / MICROTELA */
+@media (max-width: 300px) {
+    body {
+        font-size: 10px;
+    }
+
+    .lateral {
+        padding: 5px;
+    }
+
+    .menu li {
+        padding: 4px;
+        font-size: 9px;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .cartao {
+        padding: 8px;
+    }
+
+    button {
+        padding: 6px;
+        font-size: 10px;
+    }
+}
+
+/* Telas EXTREMAS */
+@media (max-width: 180px) {
+    * {
+        font-size: 8px !important;
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu li {
+        padding: 2px;
+    }
+
+    button {
+        padding: 4px;
+    }
+}
+
+/* 🖥️ TELAS GRANDES */
+@media (min-width: 1600px) {
+    .conteudo {
+        max-width: 1400px;
+        margin: auto;
+    }
+}

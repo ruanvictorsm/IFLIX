@@ -21,7 +21,7 @@ url VARCHAR(1000),
 trailer VARCHAR(1000),
 resenha VARCHAR(1000),
 descricao TEXT,
-disponivel TEXT,
+plataformas TEXT,
 foreign key (matricula_ger) references gerente(matricula_ger)
 );
 

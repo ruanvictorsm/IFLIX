@@ -48,7 +48,7 @@
             z-index: 1000;
         ">
             <button data-close="modal2"
-                style="background: transparent; border: none; font-size: x-large; color: red; align-self: flex-end;">
+                style="background: transparent; border: none; font-size: x-large; color: red; align-self: flex-end; cursor: pointer;">
                 ✖
             </button>
 
@@ -73,7 +73,7 @@
             </div><br>
 
             <div style="display: flex; gap: 10px;">
-                <a id="modal-anotacoes" href="#" target="_blank"><button>Anotações</button></a>
+                <a id="modal-anotacoes" href="#" target="_blank"><button class="anot">Anotações</button></a>
             </div>
 
             <p id="modal-disponivel" style="margin-top: 10px; color: gray;"></p>
@@ -102,10 +102,6 @@
                         card.innerHTML = `
                     <img src="${item.url}" alt="${item.titulo}">
                 `;
-
-                        card.onclick = () => {
-                            alert("aqui vai ser gerado os modais");
-                        };
 
                         lista.appendChild(card);
                         card.addEventListener('click', () => {

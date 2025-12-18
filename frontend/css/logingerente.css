@@ -6,10 +6,8 @@
     box-sizing: border-box;
 }
 
-header{
-    background-color: black;
-    padding: 2rem;
-    text-align: left;
+html, body{
+    height: 100%;
 }
 
 body{
@@ -19,10 +17,24 @@ body{
     background-repeat: no-repeat;
     font-family: "Cabin", sans-serif;
     font-weight: 500;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header{
+    background-color: black;
+    padding: 2rem;
+    text-align: left;
+}
+
+main{
+    flex: 1; 
 }
 
 h1{
-    color:goldenrod;
+    color: goldenrod;
     margin: 10px;
 }
 
@@ -63,20 +75,13 @@ input[type="submit"]{
     height: 30px;
     padding-left: 20px;
     padding-right: 55px;
-
 }
 
 footer{
-    background-color:rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
     text-align: right;
     padding: 10px 0;
-}
-
-img{
-    background-size: contain; 
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 50px;
+    margin-top: auto;
 }
 
 footer p{
@@ -86,5 +91,11 @@ footer p{
 footer a{
     text-decoration: none;
     color: goldenrod;
-            
+}
+
+img{
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50px;
 }
