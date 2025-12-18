@@ -25,17 +25,21 @@ Senha do login para administradores: admin
 
 ## Como utilizar no vscode?
 
-Instalar dependências
+Instalar dependências (se necessário)
+
 No backend do projeto:
 
-cd backend
+mudar a porta e senha do pgadmin
 
-npm install express pg cors dotenv (acho q o dotenv não tem utilidade)
+criar um gerente com matricula: 2023 (em breve será automatizado)
+
+No terminal:
+
+cd backend
 
 node index (para funcionar o código)
 
 Ctrl + C (para desligar o servidor)
-
 
 ---
 
