@@ -49,7 +49,7 @@ login.addEventListener("submit", async (e) => {
     localStorage.setItem("usuarioLogado", JSON.stringify(result.usuario));
 
     alert("Login realizado com sucesso!");
-    window.location.href = "projeto.html";
+    window.location.href = "/frontend/public_html/projeto.html";
 
   } catch (err) {
     console.error("Erro no login:", err);
@@ -102,7 +102,7 @@ cadastrar.addEventListener('submit', function (e) {
         .then(data => {
             cadastrar.reset();
             alert(`Seja bem-vindo ao IFLIX, usuário(a) ${data.nome}: Realize o login e descubra os melhores repertórios socioculturais para a sua redação!`);
-            window.location.href = 'index.html';
+            window.location.href = '/frontend/public_html/index.html';
         })
         .catch(err => {
             console.error("Erro no envio do POST:", err.message);

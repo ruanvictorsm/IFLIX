@@ -69,7 +69,7 @@ function excluirUsuario(matricula, recarregar = true) {
       } else {
         // Se for a tela do usuário comum
         localStorage.removeItem("usuarioLogado");
-        window.location.href = "/frontend/index.html";
+        window.location.href = "index.html";
       }
     })
     .catch(err => console.error("Erro ao excluir usuário:", err));

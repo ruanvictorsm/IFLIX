@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>IFLIX: Séries</title>
+    <link rel="icon" href="/frontend/Imagens/logomarca.png">
+    <link rel="stylesheet" href="/frontend/css/vermais.css">
+</head>
+
+<body>
+    <header style="display: flex; justify-content: left;">
+        <img src="/frontend/Imagens/IFLIX.png" alt="Logo" style="width: 250px;"
+            onclick="window.location.href='projeto.html';">
+        <a href="/frontend/public_html/anotacoes.html">Bloco de notas</a>
+        <a href="/frontend//public_html/conheca.html">Conheça o IFLIX</a>
+        <a href="/frontend//public_html/projeto.html"> Voltar para a página inicial</a>
+        <a href="/frontend/public_html/index.html">Sair da plataforma</a>
+
+    </header>
+
+    <div id="lista-series" style="
+    display: flex; 
+    justify-content: left;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    padding: 10px;">
+        <button onclick="window.location.href='projeto.html';" class="btn"><img src="/frontend/Imagens/voltar.png"
+                alt="voltar botão"></button>
+
+        <!-- ===== MODAL 2: DETALHES DA OBRA ===== -->
+        <div id="modal2" popover="manual" style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 100vh;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            overflow-y: scroll;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        ">
+            <button data-close="modal2"
+                style="background: transparent; border: none; font-size: x-large; color: red; align-self: flex-end; cursor: pointer;">
+                ✖
+            </button>
+
+
+            <div class="carousel-container">
+                <div class="custom-carousel" id="modal-carousel"></div>
+
+                <button class="carousel-btn prev-btn">❮</button>
+                <button class="carousel-btn next-btn">❯</button>
+            </div>
+
+            <h2 id="modal-titulo"></h2>
+            <p id="modal-genero" style="font-style: italic; color: gray;"></p>
+
+            <p id="modal-descricao"></p>
+
+            <div id="modal-estrelas" style="margin: 10px 0; font-size: 40px;">☆☆☆☆☆</div>
+
+            <div style="border: 1px solid black; padding: 10px; max-width: 90%; text-align: left;">
+                <strong>Provavelmente area das avaliações:</strong>
+                <p id="modal-detalhes"></p>
+            </div><br>
+
+            <div style="display: flex; gap: 10px;">
+                <a id="modal-anotacoes" href="#" target="_blank"><button class="anot">Anotações</button></a>
+            </div>
+
+            <p id="modal-disponivel" style="margin-top: 10px; color: gray;"></p>
+        </div>
+        <div id="overlay" style="
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 999;
+        "></div>
+    </div>
+
+    <script src="/frontend/scripts/vermais2.js"></script>
+</body>
+
+</html>
