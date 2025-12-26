@@ -74,12 +74,14 @@ section:hover {
 }
 
 .button-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     margin: 30px 0;
+    flex-wrap: wrap;
 }
 
 .btn {
-    display: inline-block;
     background-color: var(--gold-dark);
     color: var(--primary-bg);
     padding: 12px 25px;
@@ -87,7 +89,6 @@ section:hover {
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 0 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 

@@ -8,13 +8,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    font-family: "Cabin", sans-serif;
-    font-weight: 400;
-}
-
 header {
     padding: 2rem;
     background-color: black;
@@ -28,23 +21,18 @@ h1 {
 
 }
 
-.botaoconheca {
-    float: left;
-    cursor: pointer;
-    padding: 0 0.8rem;
-}
-
+.botaoconheca,
 .botaonotas {
     float: left;
     cursor: pointer;
     padding: 0 0.8rem;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 .botaosair {
     float: right;
     padding: 0 0.8rem;
-    margin: 0 10px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
@@ -58,27 +46,14 @@ img {
     cursor: pointer;
 }
 
-.IFLIX{
-    width: 280px; 
-    height: 100%;
-    padding: 0px;
-    /*background-color: aliceblue;*/
-    border: none;
-    border-radius: 0%;
+.IFLIX {
+    width: 280px;
+    height: auto;
+    border-radius: 0;
 }
 
-#divfilmes {
-    display: flex;
-    gap: 10px;
-    justify-content: left;
-}
-
-#divseries {
-    display: flex;
-    gap: 10px;
-    justify-content: left;
-}
-
+#divfilmes,
+#divseries,
 #divlivros {
     display: flex;
     gap: 10px;
@@ -189,3 +164,72 @@ footer p {
     background-color: darkgoldenrod;
     transform: scale(1.1);
 }
+
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+    h1 {
+        font-size: 60px;
+    }
+
+    img {
+        width: 9rem;
+    }
+
+    .IFLIX {
+        width: 230px;
+    }
+}
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 42px;
+    }
+
+    header {
+        padding: 1.2rem;
+    }
+
+    .botaoconheca,
+    .botaonotas,
+    .botaosair {
+        float: none;
+        display: inline-block;
+        margin: 6px 4px;
+    }
+
+    img {
+        width: 8rem;
+    }
+
+    .IFLIX {
+        width: 200px;
+    }
+
+    #divfilmes,
+    #divseries,
+    #divlivros {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* CELULAR PEQUENO */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    img {
+        width: 7rem;
+    }
+
+    .IFLIX {
+        width: 170px;
+    }
+}
+
