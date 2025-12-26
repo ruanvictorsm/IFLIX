@@ -10,37 +10,8 @@
 </head>
 <body>
     <button onclick="history.back()" class="btn">Voltar</button>
-    <!--falta criar nova tabela no banco-->
     
     <p>meio ambiente, saude, tecnologia, educação, segurança, cidadania, cultura, etica, internet, economia</p>
-    <marquee>tchaian</marquee>
-
-    <select id="tipo">
-    <option value="">Tipo</option>
-    <option value="obra">Obra</option>
-    <option value="cancao">Canção</option>
-</select>
-
-<select id="genero">
-    <option value="">Selecione o gênero</option>
-</select>
-
-<script>
-const generos = {
-    obra: ["Ação", "Drama", "Fantasia"],
-    cancao: ["Rock", "Pop", "Rap"]
-};
-
-document.getElementById("tipo").addEventListener("change", function () {
-    const genero = document.getElementById("genero");
-    genero.innerHTML = "<option value=''>Selecione</option>";
-
-    if (generos[this.value]) {
-        generos[this.value].forEach(g =>
-            genero.innerHTML += `<option value="${g}">${g}</option>`
-        );
-    }
-});
-</script>
+    
 </body>
 </html>
