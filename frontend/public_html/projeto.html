@@ -166,15 +166,17 @@
                 const filmes = document.getElementById('divfilmes');
                 const series = document.getElementById('divseries');
                 const livros = document.getElementById('divlivros');
+                const musicas = document.getElementById('divmusicas');
                 const modal2 = document.getElementById('modal2');
                 const overlay = document.getElementById('overlay');
 
-                let countFilmes = 0, countSeries = 0, countLivros = 0;
+                let countFilmes = 0, countSeries = 0, countLivros = 0, countMusicas = 0;
 
                 data.forEach(item => {
                     if (item.tipo === 'Filme' && countFilmes >= 7) return;
                     if (item.tipo === 'Série' && countSeries >= 7) return;
                     if (item.tipo === 'Livro' && countLivros >= 7) return;
+                    if (item.tipo === 'Canção' && countMusicas >= 7) return;
 
                     const btn = document.createElement('button');
                     btn.classList.add('conteudo-btn');
@@ -247,6 +249,8 @@
                         series.appendChild(btn); countSeries++;
                     } else if (item.tipo === 'Livro') {
                         livros.appendChild(btn); countLivros++;
+                    } else if (item.tipo === 'Canção') {
+                        musicas.appendChild(btn); countMusicas++;
                     }
                 });
             });

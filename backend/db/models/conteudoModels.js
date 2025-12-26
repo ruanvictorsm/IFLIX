@@ -23,13 +23,13 @@ export async function getConteudoById(id) {
 }
 
 // Adicionar novo conteúdo 
-export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas) {
+export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas) {
   try {
     const consulta = await pool.query(
-      `INSERT INTO conteudo (titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      `INSERT INTO conteudo (titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
        RETURNING *`,
-      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas]
+      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas]
     );
     return consulta.rows[0];
   } catch (err) {
@@ -39,7 +39,7 @@ export async function addConteudo(titulo, tipo, genero, matricula_ger, url, trai
 }
 
 // Atualizar conteúdo existente
-export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas}) {
+export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas}) {
   try {
     const consulta = await pool.query(
       `UPDATE conteudo SET
@@ -51,10 +51,11 @@ export async function updateConteudo({ id, titulo, tipo, genero, matricula_ger, 
          trailer = COALESCE($6, trailer),
          resenha = COALESCE($7, resenha),
          descricao = COALESCE($8, descricao),
-         plataformas = COALESCE($9, plataformas)
-       WHERE id_cont = $10
+         plataformas = COALESCE($9, plataformas),
+         temas = COALESCE($10, temas)
+       WHERE id_cont = $11
        RETURNING *`,
-      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, id]
+      [titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas, id]
     );
     return consulta.rows[0] || null;
   } catch (err) {

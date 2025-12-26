@@ -127,15 +127,15 @@ APP.get("/api/conteudo", async (req, res) => {
 
 //  POST: Adicionar novo Conteúdo 
 APP.post("/api/conteudo", async (req, res) => {
-  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas } = req.body;
+  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas } = req.body;
 
-  if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !plataformas || !matricula_ger) {
+  if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !plataformas || !temas || !matricula_ger) {
     console.error("Dados faltantes no POST:", req.body);
-    return res.status(400).json({ mensagem: "Título, Tipo, Gênero, Url do poster, Url da trailer, Url da resenha, descrição, plataformas e Matrícula do Gerente são obrigatórios." });
+    return res.status(400).json({ mensagem: "Todos os elementos são obrigatórios." });
   }
 
   try {
-    const novo = await addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas);
+    const novo = await addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas);
     if (novo) {
       res.status(201).json(novo);
     } else {
@@ -165,7 +165,7 @@ APP.delete("/api/conteudo/:id_cont", async (req, res) => {
 // Atualizar conteúdo existente 
 APP.put("/api/conteudo/:id_cont", async (req, res) => {
   const id = req.params.id_cont;
-  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas } = req.body;
+  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas } = req.body;
 
   try {
     const conteudoAtualizado = await updateConteudo({
@@ -178,7 +178,8 @@ APP.put("/api/conteudo/:id_cont", async (req, res) => {
       trailer,
       resenha,
       descricao,
-      plataformas
+      plataformas,
+      temas
     });
 
     if (!conteudoAtualizado) {

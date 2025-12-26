@@ -144,14 +144,20 @@
                         <h2>Eixos Temáticos</h2>
                         <div class="bloco vermelho" style="border-style:solid;border-width:1px;">
                             <p>Escolhas os temas que a obra aborda:</p>
-
-                            <button type="button" class="repbtn" value=""><strong>Desigualdade Social</strong></button>
-                            <button type="button" class="repbtn" value=""><strong>Pobreza</strong></button>
-                            <button type="button" class="repbtn" value=""><strong>Crime</strong></button>
-                            <button type="button" class="repbtn" value=""><strong>Mulheres</strong></button>
-                            <button type="button" class="repbtn" value=""><strong>Meio Ambiente</strong></button>
-                            <button type="button" popovertarget="modal" class="repbtn" value=""><strong>Ver
-                                    mais...</strong></button>
+                                <select name="Temas" id="tema" style="padding: 10px; width: 1000px; border-radius: 10px; border:1px solid #2a2a2a; background:#121212; color:#fff;">
+                                    <option value="">Eixos Temáticos</option>
+                                    <option value="Cultura">Cultura</option>
+                                    <option value="Meio Ambiente">Meio Ambiente</option>
+                                    <option value="Saúde">Saúde</option>
+                                    <option value="Tecnologia">Tecnologia</option>
+                                    <option value="Educação">Educação</option>
+                                    <option value="Segurança">Segurança</option>
+                                    <option value="Cidadania">Cidadania</option>
+                                    <option value="Ética">Ética</option>
+                                    <option value="Internet">Internet</option>
+                                    <option value="Economia">Economia</option>
+                                </select>
+                           
                             <section>
                                 <div id="modal" popover style="
                                     position: fixed;
@@ -222,27 +228,5 @@
     </main>
 
     <script src="/frontend/scripts/conteudo.js"></script>
-    <script>
-        const overlay = document.getElementById('overlay');
-
-        // Seleciona todos os elementos com atributo popover (ou seja, todos os modais)
-        const modais = document.querySelectorAll('[popover]');
-
-        modais.forEach(modal => {
-            // Mostra ou oculta o overlay conforme o estado do popover
-            modal.addEventListener('toggle', () => {
-                const algumAberto = Array.from(modais).some(m => m.matches(':popover-open'));
-                overlay.style.display = algumAberto ? 'block' : 'none';
-            });
-        });
-
-        // Se clicar no fundo, fecha o modal aberto
-        overlay.addEventListener('click', () => {
-            modais.forEach(m => m.hidePopover());
-        });
-
-    </script>
 </body>
-
-
 </html>

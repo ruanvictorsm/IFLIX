@@ -25,7 +25,7 @@ plataformas TEXT,
 foreign key (matricula_ger) references gerente(matricula_ger)
 );
 
-create table avaliacao(
+create table avaliacao( pensando como vai ser criado
 cod_nota VARCHAR(1) primary key,
 comentario VARCHAR(500),
 matricula VARCHAR(20),
@@ -34,14 +34,7 @@ foreign key (matricula) references usuario(matricula),
 foreign key (id_cont) references conteudo(id_cont)
 );
 
-create table eixo_tematico( possivelmente iremos tirar esse
-id_tema SERIAL primary key,
-tema VARCHAR(255),
-matricula_ger VARCHAR(20),
-foreign key (matricula_ger) references gerente(matricula_ger)
-);
-
-create table tema_cont(
+create table avalia_cont(
 id_tema int,
 id_cont int,
 PRIMARY KEY (id_tema, id_cont),
