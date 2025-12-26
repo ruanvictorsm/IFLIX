@@ -62,7 +62,7 @@
         <section>
             <h2>FILMES</h2>
             <div id="divfilmes">
-                <button style="margin-left: 10px;"  onclick="window.location.href='ver_mais1.html';">
+                <button style="margin-left: 10px;" onclick="window.location.href='ver_mais1.html';">
                     <img src="/frontend/Imagens/vermais.png" alt="ver mais...">
                 </button>
             </div>
@@ -85,14 +85,13 @@
                 </button>
             </div>
         </section>
-
         <section>
             <h2>CANÇÕES</h2>
-
-            <button>
-                <img src="/frontend/Imagens/vermais.png" alt="vermais" style="margin-left: 10px;" onclick="window.location.href='vermais4.html';">
-            </button>
-
+            <div id="divmusicas">
+                <button style="margin-left: 10px;" onclick="window.location.href='ver_mais4.html';">
+                    <img src="/frontend/Imagens/vermais.png" alt="vermais">
+                </button>
+            </div>
         </section>
 
 
@@ -323,7 +322,7 @@
                 nome: novoNome,
                 senha: novaSenha,
                 ano: novoAno
-            }; 
+            };
 
             fetch(`http://localhost:3000/api/usuarios/${usuario.matricula}`, {
                 method: "PUT",
@@ -350,4 +349,5 @@
 
     </script>
 </body>
+
 </html>

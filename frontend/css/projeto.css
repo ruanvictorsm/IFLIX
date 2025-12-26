@@ -60,7 +60,8 @@ img {
 
 #divfilmes,
 #divseries,
-#divlivros {
+#divlivros,
+#divmusicas {
     display: flex;
     gap: 10px;
     justify-content: left;
