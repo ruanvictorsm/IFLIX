@@ -1,13 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>IFLIX - Admin: Avaliações</title>
     <link rel="icon" href="/frontend/Imagens/logomarca.png">
+    <link rel="stylesheet" href="/frontend/css/avaliacoes.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            width: 320px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .resultado {
+            margin-top: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .grupo-nota {
+            margin-bottom: 15px;
+        }
+
+        .grupo-nota p {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .estrelas {
+            display: flex;
+            gap: 6px;
+        }
+
+        .estrelas span {
+            font-size: 28px;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .estrelas span.ativa {
+            color: gold;
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="box">
+        <h2>Calcular Média</h2>
+
+        <div id="inputs"></div>
+
+        <button onclick="adicionarGrupo()">➕ Adicionar número</button>
+        <button onclick="calcularMedia()">📊 Calcular média</button>
+
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+
+
+    <script>
+        let contador = 0;
+
+        function adicionarGrupo() {
+            contador++;
+
+            const div = document.getElementById("inputs");
+            const grupo = document.createElement("div");
+            grupo.className = "grupo-nota";
+
+            const titulo = document.createElement("p");
+            titulo.innerText = `Avaliação ${contador}`;
+            grupo.appendChild(titulo);
+
+            const estrelas = document.createElement("div");
+            estrelas.className = "estrelas";
+            estrelas.dataset.valor = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const estrela = document.createElement("span");
+                estrela.innerHTML = "★";
+                estrela.dataset.valor = i;
+
+                estrela.addEventListener("mouseover", () => pintar(estrelas, i));
+                estrela.addEventListener("mouseout", () => pintar(estrelas, estrelas.dataset.valor));
+                estrela.addEventListener("click", () => {
+                    estrelas.dataset.valor = i;
+                    pintar(estrelas, i);
+                });
+
+                estrelas.appendChild(estrela);
+            }
+
+            grupo.appendChild(estrelas);
+            div.appendChild(grupo);
+        }
+
+        function pintar(container, valor) {
+            const estrelas = container.querySelectorAll("span");
+            estrelas.forEach((estrela, index) => {
+                estrela.classList.toggle("ativa", index < valor);
+            });
+        }
+
+        function calcularMedia() {
+            const grupos = document.querySelectorAll(".estrelas");
+            let soma = 0;
+            let total = 0;
+
+            grupos.forEach(g => {
+                const valor = Number(g.dataset.valor);
+                if (valor > 0) {
+                    soma += valor;
+                    total++;
+                }
+            });
+
+            if (total === 0) {
+                document.getElementById("resultado").innerText =
+                    "Selecione pelo menos uma avaliação!";
+                return;
+            }
+
+            const media = soma / total;
+            document.getElementById("resultado").innerText =
+                `Média: ${media.toFixed(2)} (${total} avaliações)`;
+        }
+
+        adicionarGrupo();
+    </script>
+
+
+
+
 </body>
+
 </html>
