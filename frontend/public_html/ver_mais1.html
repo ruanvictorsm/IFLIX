@@ -88,72 +88,7 @@
     </div>
 
     <script src="/frontend/scripts/vermais1.js"></script>
-    <script>
-        let contador = 0;
 
-        function adicionarGrupo() {
-            contador++;
-
-            const div = document.getElementById("inputs");
-            const grupo = document.createElement("div");
-            grupo.className = "grupo-nota";
-
-            const estrelas = document.createElement("div");
-            estrelas.className = "estrelas";
-            estrelas.dataset.valor = 0;
-
-            for (let i = 1; i <= 5; i++) {
-                const estrela = document.createElement("span");
-                estrela.innerHTML = "★";
-                estrela.dataset.valor = i;
-
-                estrela.addEventListener("mouseover", () => pintar(estrelas, i));
-                estrela.addEventListener("mouseout", () => pintar(estrelas, estrelas.dataset.valor));
-                estrela.addEventListener("click", () => {
-                    estrelas.dataset.valor = i;
-                    pintar(estrelas, i);
-                });
-
-                estrelas.appendChild(estrela);
-            }
-
-            grupo.appendChild(estrelas);
-            div.appendChild(grupo);
-        }
-
-        function pintar(container, valor) {
-            const estrelas = container.querySelectorAll("span");
-            estrelas.forEach((estrela, index) => {
-                estrela.classList.toggle("ativa", index < valor);
-            });
-        }
-        /*
-        function calcularMedia() {
-            const grupos = document.querySelectorAll(".estrelas");
-            let soma = 0;
-            let total = 0;
-
-            grupos.forEach(g => {
-                const valor = Number(g.dataset.valor);
-                if (valor > 0) {
-                    soma += valor;
-                    total++;
-                }
-            });
-
-            if (total === 0) {
-                document.getElementById("resultado").innerText =
-                    "Selecione pelo menos uma avaliação!";
-                return;
-            }
-
-            const media = soma / total;
-            document.getElementById("resultado").innerText =
-                `Média: ${media.toFixed(2)} (${total} avaliações)`;
-        }*/
-
-        adicionarGrupo();
-    </script>
 </body>
 
 </html>
