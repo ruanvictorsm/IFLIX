@@ -22,6 +22,7 @@ trailer VARCHAR(1000),
 resenha VARCHAR(1000),
 descricao TEXT,
 plataformas TEXT,
+temas TEXT,
 foreign key (matricula_ger) references gerente(matricula_ger)
 );
 
