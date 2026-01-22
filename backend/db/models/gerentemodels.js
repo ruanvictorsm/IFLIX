@@ -2,7 +2,7 @@ import { pool } from "../conn.js";
 
 export async function getAllgerentes(){
     try{
-        const consulta = await pool.query("SELECT * FROM matricula_ger");
+        const consulta = await pool.query("SELECT * FROM gerente");
         const result = consulta.rows;
 
         return result;
@@ -13,12 +13,10 @@ export async function getAllgerentes(){
     }
 }
 
-
-
 // Buscar um gerente por matricula
 export async function getUsuarioById(id) {
   try {
-    const consulta = await pool.query("SELECT * FROM usuario WHERE matricula = $1", [id]);
+    const consulta = await pool.query("SELECT * FROM gerente WHERE matricula_ger = $1", [id]);
     return consulta.rows[0] || null;
   } catch (err) {
     console.error(err);
@@ -27,13 +25,13 @@ export async function getUsuarioById(id) {
 }
 
 // Adicionar novo usuário
-export async function addUsuario(matricula, nome, senha, matricula_ger, ano) {
+export async function addGerente(matricula_ger) {
   try {
     const consulta = await pool.query(
-      `INSERT INTO usuario (matricula, nome, senha, matricula_ger, ano)
-       VALUES ($1, $2, $3, $4, $5)
+      `INSERT INTO gerente (matricula_ger)
+       VALUES ($1)
        RETURNING *`,
-      [matricula, nome, senha, matricula_ger, ano]
+      [matricula_ger]
     );
     return consulta.rows[0];
   } catch (err) {
