@@ -12,15 +12,15 @@
 
 <body>
     <header>
-        <h1>Login para administradores IFLIX</h1>
+        <h1>Login para administradores e gerentes - IFLIX</h1>
     </header>
     <main>
         <form onsubmit="loginger(); return false;">
             <fieldset>
-                <h3 style="margin-bottom: 10px;"> Administrador </h3>
+                <h3 style="margin-bottom: 10px;"> Administrador/Gerente </h3>
                 <input type="text" placeholder="Login" id="login"><br>
                 <input type="password" placeholder="Senha" id="senha"><br>
-                <input type="submit" style="background-color: goldenrod; margin: 10px; width: 25%;">
+                <input type="submit" class="enviar">
             </fieldset>
         </form>
     </main>
@@ -35,12 +35,18 @@
             var login = document.getElementById('login').value;
             var senha = document.getElementById('senha').value;
 
-            if (login == "admin" && senha == "admin") {
-                alert('Sucesso');
+            if (login === "admin" && senha === "admin") {
+                alert('Sucesso - Administrador');
+                location.href = "/frontend/public_html/chatadmin.html";
+
+            } else if (login === "gerente" && senha === "gerente")  {
+                alert('Sucesso - Gerente');
                 location.href = "/frontend/public_html/gerente.html";
+            
             } else {
-                alert('Usuário ou senha incorretos');
+                alert('Usuário ou senha incorretos!');
             }
+
 
         }
     </script>

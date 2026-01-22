@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    background-color: rgb(21, 21, 20);
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    display: inline-block;
+    background-color: goldenrod;
+    font-size: large;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px 15px ;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: gold;
+    transform: translateY(-2px);
+}
+
+#chat{
+    display: flex;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+
+    background: gray;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
