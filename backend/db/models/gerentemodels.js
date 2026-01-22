@@ -24,7 +24,7 @@ export async function getUsuarioById(id) {
   }
 }
 
-// Adicionar novo usuário
+// Adicionar novo gerente
 export async function addGerente(matricula_ger) {
   try {
     const consulta = await pool.query(
