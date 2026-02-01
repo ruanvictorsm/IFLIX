@@ -12,9 +12,6 @@ let chatId = null;
 const mensagensDiv = document.getElementById("mensagens");
 const input = document.getElementById("mensagemInput");
 
-/* ===============================
-   CARREGAR CHAT + HISTÓRICO
-================================ */
 async function carregarChat() {
   const res = await fetch(`http://localhost:3000/api/chat/${matriculaGer}`);
   const dados = await res.json();
@@ -24,9 +21,6 @@ async function carregarChat() {
   dados.forEach(m => renderMensagem(m.remetente, m.mensagem));
 }
 
-/* ===============================
-   RENDER MENSAGEM
-================================ */
 function renderMensagem(remetente, texto) {
   const div = document.createElement("div");
   div.classList.add("msg");
@@ -42,9 +36,6 @@ function renderMensagem(remetente, texto) {
   mensagensDiv.scrollTop = mensagensDiv.scrollHeight;
 }
 
-/* ===============================
-   ENVIAR MENSAGEM
-================================ */
 async function enviar() {
   const texto = input.value.trim();
   if (!texto) return;
@@ -63,14 +54,8 @@ async function enviar() {
   
 }
 
-/* ===============================
-   SOCKET
-================================ */
 socket.on("nova_mensagem", (msg) => {
   renderMensagem(msg.remetente, msg.mensagem);
 });
 
-/* ===============================
-   INIT
-================================ */
 carregarChat();

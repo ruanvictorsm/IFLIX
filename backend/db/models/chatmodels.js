@@ -1,7 +1,7 @@
 import { pool } from "../conn.js";
 
 export async function getChatId(matricula_ger, admin_id) {
-  // 1️⃣ tenta achar o chat
+  // tenta achar o chat
   const result = await pool.query(
     `SELECT id_chat 
      FROM chat 
@@ -13,7 +13,7 @@ export async function getChatId(matricula_ger, admin_id) {
     return result.rows[0].id_chat;
   }
 
-  // 2️⃣ se não existir, cria
+  // se não existir, cria
   const novoChat = await pool.query(
     `INSERT INTO chat (matricula_ger, matricula_admin)
      VALUES ($1, $2)

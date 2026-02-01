@@ -16,7 +16,6 @@ h2 {
   text-align: center;
 }
 
-/* 🔥 container precisa ser FLEX */
 .mensagens {
   height: 300px;
   overflow-y: auto;
@@ -29,7 +28,6 @@ h2 {
   gap: 8px;
 }
 
-/* mensagem base */
 .msg {
   max-width: 65%;
   padding: 10px 14px;
@@ -38,7 +36,6 @@ h2 {
   word-wrap: break-word;
 }
 
-/* 👉 direita (usuário logado) */
 .msg.eu {
   align-self: flex-end;
   background-color: #dcf8c6;
@@ -46,7 +43,6 @@ h2 {
   text-align: right;
 }
 
-/* 👉 esquerda (outro usuário / admin) */
 .msg.outro {
   align-self: flex-start;
   background-color: #ffffff;
@@ -55,7 +51,6 @@ h2 {
   text-align: left;
 }
 
-/* entrada */
 .entrada {
   display: flex;
   gap: 6px;

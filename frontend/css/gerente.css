@@ -87,13 +87,9 @@ body {
     font-weight: 700;
 }
 
-
-
 .azul {
     background-color: #cfe8ff;
 }
-
- 
 
 .cartao {
     border-radius: 8px;
@@ -133,10 +129,8 @@ body {
 }
 
 .servico {
-    position: relative;
-    margin-top: 30px;
-    right: 417px;
-    width: 900px;
+    display: flex;
+    justify-content: center;
 }
 
 table{
@@ -201,20 +195,17 @@ h2 {
   text-align: center;
 }
 
-/* 🔥 container precisa ser FLEX */
 .mensagens {
   height: 300px;
   overflow-y: auto;
   border: 1px solid #000000;
   padding: 8px;
   margin-bottom: 10px;
-
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* mensagem base */
 .msg {
   max-width: 65%;
   padding: 10px 14px;
@@ -223,7 +214,6 @@ h2 {
   word-wrap: break-word;
 }
 
-/* 👉 direita (usuário logado) */
 .msg.eu {
   align-self: flex-end;
   background-color: #007d1b;
@@ -231,7 +221,6 @@ h2 {
   text-align: right;
 }
 
-/* 👉 esquerda (outro usuário / admin) */
 .msg.outro {
   align-self: flex-start;
   background-color: #000000;
@@ -240,7 +229,6 @@ h2 {
   text-align: left;
 }
 
-/* entrada */
 .entrada {
   display: flex;
   gap: 6px;

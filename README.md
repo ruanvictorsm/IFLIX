@@ -12,14 +12,29 @@ Este site foi desenvolvido com o objetivo de **auxiliar estudantes** que têm o 
 
 ## Como foi desenvolvido?
 
-O site foi programado com o auxílio de ferramentas programáveis, como a linguagem **JavaScript**. Também foram utilizadas as linguagens de marcação: **HTML e CSS**, no front-end. A página teve o auxílio e orientação do professor de língua portuguesa, *Kléber José*, que acompanhou todo o processo de desenvolvimento e encabeçou as ideias principais. O front-end e back-end foram desenvolvidos majoritariamente pelo discente Ruan Victor, que desenvolveu as janelas principais. Já as janelas que fazem parte do "Conheça", "Anotações" e a central de ajuda da página "Projeto" foram desenvolvidas pela discente Lívia Cristina, que também coordenou os textos e o design ilustrativo deste site.  
+O site foi programado com o auxílio de ferramentas programáveis, como a linguagem **JavaScript**. Também foram utilizadas as linguagens de marcação: **HTML e CSS**, no front-end. A página teve o auxílio e orientação do professor de língua portuguesa, *Kléber José*, que acompanhou todo o processo de desenvolvimento e encabeçou as ideias principais. O front-end e back-end foram desenvolvidos majoritariamente pelo discente Ruan Victor, que desenvolveu as janelas principais. Já as janelas que fazem parte do "Conheça", "Anotações" e a foram desenvolvidas pela discente Lívia Cristina, que também coordenou os textos e o design ilustrativo deste site.  
 
 ---
 
-## Como utilizar a plataforma (para administradores)?
+## Linguagens Utilizadas:
+
+- HTML
+- CSS
+- JAVASCRIPT
+- NODE.JS
+- EXPRESS
+- SOCKET.IO
+- POSTGRESQL
+
+---
+
+## Como utilizar a plataforma? (OBS: Para administradores e gerentes)
 
 Usuário do login para administradores: admin
 Senha do login para administradores: admin
+
+Usuário do login para gerentes: gerente
+Senha do login para gerentes: gerente
 
 ---
 
@@ -29,9 +44,10 @@ Instalar dependências (se necessário)
 
 No backend do projeto:
 
-mudar a porta e senha do pgadmin
+mudar a porta e senha do pgadmin (se necessário)
 
 criar um gerente com matricula: 2023 (em breve será automatizado)
+criar um administrador com matricula: 20231214010013 (em breve será automatizado)
 
 No terminal:
 

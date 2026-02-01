@@ -3,7 +3,6 @@ import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 
-// USERS
 import {
   addUsuario,
   getAllUsers,
@@ -11,7 +10,6 @@ import {
   updateUsuario
 } from "./db/models/userModels.js";
 
-// CONTEÚDO
 import {
   getAllConteudo,
   addConteudo,
@@ -19,7 +17,6 @@ import {
   updateConteudo
 } from "./db/models/conteudoModels.js";
 
-// CHAT
 import * as Chat from "./db/models/chatmodels.js";
 
 const { getChatId } = Chat;
@@ -30,7 +27,6 @@ const { listarMensagens, enviarMensagem } = Mensagem;
 const APP = express();
 const PORT = 3000;
 
-// 🔥 necessário para Socket.IO
 const server = http.createServer(APP);
 const io = new Server(server, {
   cors: { origin: "*" }
@@ -39,9 +35,6 @@ const io = new Server(server, {
 APP.use(express.json());
 APP.use(cors());
 
-/* ======================================================
-   USUÁRIOS
-====================================================== */
 
 APP.get("/api/usuarios", async (req, res) => {
   try {
@@ -113,10 +106,6 @@ APP.put("/api/usuarios/:matricula", async (req, res) => {
   }
 });
 
-/* ======================================================
-   CONTEÚDO
-====================================================== */
-
 APP.get("/api/conteudo", async (req, res) => {
   try {
     const conteudos = await getAllConteudo();
@@ -167,9 +156,6 @@ APP.put("/api/conteudo/:id_cont", async (req, res) => {
   }
 });
 
-/* ======================================================
-   CHAT REST (histórico)
-====================================================== */
 
 const ADMIN_ID = "20231214010013";
 
@@ -190,27 +176,22 @@ APP.get("/api/chat/:matricula_ger", async (req, res) => {
 });
 
 APP.post("/api/chat", async (req, res) => {
-  console.log("📥 BODY RECEBIDO:", req.body);
+  console.log("BODY RECEBIDO:", req.body);
 
   const { matricula_ger, remetente, mensagem } = req.body;
 
   try {
     const chatId = await getChatId(matricula_ger, "20231214010013");
-    console.log("🧠 CHAT ID:", chatId);
+    console.log("CHAT ID:", chatId);
 
     await enviarMensagem(chatId, remetente, mensagem);
     res.status(201).json({ ok: true });
 
   } catch (err) {
-    console.error("🔥 ERRO REAL:", err);
+    console.error("ERRO REAL:", err);
     res.status(500).json({ erro: "Falha ao enviar mensagem" });
   }
 });
-
-
-/* ======================================================
-   SOCKET.IO — CHAT EM TEMPO REAL
-====================================================== */
 
 io.on("connection", (socket) => {
   console.log("🟢 Conectado:", socket.id);
@@ -234,11 +215,6 @@ io.on("connection", (socket) => {
   });
 });
 
-
-/* ======================================================
-   START
-====================================================== */
-
 server.listen(PORT, () => {
-  console.log("🔥 Servidor rodando em http://localhost:" + PORT);
+  console.log("Servidor rodando em http://localhost:" + PORT);
 });
