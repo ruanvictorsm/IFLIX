@@ -36,20 +36,24 @@
             var senha = document.getElementById('senha').value;
 
             if (login === "admin" && senha === "admin") {
-                alert('Sucesso - Administrador');
+                localStorage.setItem("matricula", "20231214010013"); // admin
+                localStorage.setItem("matricula_ger", "2023");      // gerente do chat
                 location.href = "/frontend/public_html/chatadmin.html";
-
-            } else if (login === "gerente" && senha === "gerente")  {
-                alert('Sucesso - Gerente');
-                location.href = "/frontend/public_html/gerente.html";
-            
-            } else {
-                alert('Usuário ou senha incorretos!');
             }
 
+            else if (login === "gerente" && senha === "gerente") {
+                localStorage.setItem("matricula", "2023");          // gerente
+                localStorage.setItem("matricula_ger", "2023");      // dono do chat
+                location.href = "/frontend/public_html/gerente.html";
+            }
 
+            else {
+                alert("Usuário ou senha incorretos");
+            }
         }
     </script>
+
+
 </body>
 
 </html>

@@ -76,6 +76,17 @@
                 <div class="cartao">
                     <h3>Dúvidas ou problemas com o site? Entre em contato com a equipe de desenvolvimento.</h3>
                     <div class="botoes">
+                        <div class="chat-container">
+                            <h2 style="color: #121212;">Chat com Administrador</h2>
+
+                            <div id="mensagens" class="mensagens"></div>
+
+                            <div class="entrada">
+                                <input type="text" id="mensagemInput" placeholder="Digite sua mensagem..." />
+                                <button onclick="enviar()">Enviar</button>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -145,20 +156,21 @@
                         <h2>Eixos Temáticos</h2>
                         <div class="bloco vermelho" style="border-style:solid;border-width:1px;">
                             <p>Escolhas os temas que a obra aborda:</p>
-                                <select name="Temas" id="tema" style="padding: 10px; width: 1000px; border-radius: 10px; border:1px solid #2a2a2a; background:#121212; color:#fff;">
-                                    <option value="">Eixos Temáticos</option>
-                                    <option value="Cultura">Cultura</option>
-                                    <option value="Meio Ambiente">Meio Ambiente</option>
-                                    <option value="Saúde">Saúde</option>
-                                    <option value="Tecnologia">Tecnologia</option>
-                                    <option value="Educação">Educação</option>
-                                    <option value="Segurança">Segurança</option>
-                                    <option value="Cidadania">Cidadania</option>
-                                    <option value="Ética">Ética</option>
-                                    <option value="Internet">Internet</option>
-                                    <option value="Economia">Economia</option>
-                                </select>
-                           
+                            <select name="Temas" id="tema"
+                                style="padding: 10px; width: 1000px; border-radius: 10px; border:1px solid #2a2a2a; background:#121212; color:#fff;">
+                                <option value="">Eixos Temáticos</option>
+                                <option value="Cultura">Cultura</option>
+                                <option value="Meio Ambiente">Meio Ambiente</option>
+                                <option value="Saúde">Saúde</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Educação">Educação</option>
+                                <option value="Segurança">Segurança</option>
+                                <option value="Cidadania">Cidadania</option>
+                                <option value="Ética">Ética</option>
+                                <option value="Internet">Internet</option>
+                                <option value="Economia">Economia</option>
+                            </select>
+
                             <section>
                                 <div id="modal" popover style="
                                     position: fixed;
@@ -208,7 +220,8 @@
                     <label><input type="checkbox" name="pergunta1" value="Globoplay">Globoplay</label><br>
                     <label><input type="checkbox" name="pergunta1" value="Domínio Público">Domínio Público</label><br>
                     <label><input type="checkbox" name="pergunta1" value="Youtube">Youtube</label><br>
-                    <label><input type="checkbox" name="pergunta1" value="Spotify/Apple Music/Amazon Music">Spotify/Apple Music/Amazon Music</label><br>
+                    <label><input type="checkbox" name="pergunta1"
+                            value="Spotify/Apple Music/Amazon Music">Spotify/Apple Music/Amazon Music</label><br>
                     <label><input type="checkbox" name="pergunta1" value="BibliotecaIF">Biblioteca IFRN</label><br>
                     <label><input type="checkbox" name="pergunta1" value="Aluguel/Compra">Aluguel/Compra</label><br>
                 </div>
@@ -228,6 +241,9 @@
 
     </main>
 
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="/frontend/scripts/chat.js"></script>
     <script src="/frontend/scripts/conteudo.js"></script>
 </body>
+
 </html>

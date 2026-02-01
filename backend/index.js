@@ -1,201 +1,244 @@
 import express from "express";
-import { addUsuario, getAllUsers, excluirUsuario, updateUsuario } from "./db/models/userModels.js";
-import { getAllConteudo, addConteudo, excluirConteudo, updateConteudo } from "./db/models/conteudoModels.js";
-import cors from 'cors';
+import http from "http";
+import { Server } from "socket.io";
+import cors from "cors";
+
+// USERS
+import {
+  addUsuario,
+  getAllUsers,
+  excluirUsuario,
+  updateUsuario
+} from "./db/models/userModels.js";
+
+// CONTEÚDO
+import {
+  getAllConteudo,
+  addConteudo,
+  excluirConteudo,
+  updateConteudo
+} from "./db/models/conteudoModels.js";
+
+// CHAT
+import * as Chat from "./db/models/chatmodels.js";
+
+const { getChatId } = Chat;
+import * as Mensagem from "./db/models/mensagemModels.js";
+
+const { listarMensagens, enviarMensagem } = Mensagem;
 
 const APP = express();
 const PORT = 3000;
 
+// 🔥 necessário para Socket.IO
+const server = http.createServer(APP);
+const io = new Server(server, {
+  cors: { origin: "*" }
+});
+
 APP.use(express.json());
 APP.use(cors());
 
-//  Rota Padrão: Listar Usuários
+/* ======================================================
+   USUÁRIOS
+====================================================== */
+
 APP.get("/api/usuarios", async (req, res) => {
   try {
     const usuarios = await getAllUsers();
     res.json(usuarios);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: "Erro ao buscar usuários." });
   }
 });
 
-
-// POST: Adicionar novo Usuário 
 APP.post("/api/usuario", async (req, res) => {
-  // Se req.body estiver undefined, o middleware express.json() não foi executado.
   const { matricula, nome, senha, matricula_ger, ano } = req.body;
 
   if (!matricula || !nome || !senha || !matricula_ger || !ano) {
-    // Log para depuração
-    console.error("Dados faltantes no POST:", req.body);
-    return res.status(400).json({ mensagem: "Matrícula, Nome, Senha, ano e Matrícula do Gerente são obrigatórios." });
+    return res.status(400).json({ mensagem: "Campos obrigatórios ausentes." });
   }
 
   try {
     const novo = await addUsuario(matricula, nome, senha, matricula_ger, ano);
-    if (novo) {
-      res.status(201).json(novo);
-    } else {
-      res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
-    }
-
+    res.status(201).json(novo);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ mensagem: "Erro interno do servidor ao adicionar conteúdo." });
+    res.status(500).json({ mensagem: "Erro ao adicionar usuário." });
   }
 });
 
-// POST: Login
 APP.post("/api/login", async (req, res) => {
   const { matricula, senha } = req.body;
 
   if (!matricula || !senha) {
-    return res.status(400).json({ mensagem: "Matrícula e senha são obrigatórios." });
+    return res.status(400).json({ mensagem: "Matrícula e senha obrigatórios." });
   }
 
   try {
-    // Função que busca usuário por matrícula
     const users = await getAllUsers();
-    const usuario = users.find(u => u.matricula === matricula && u.senha === senha);
+    const usuario = users.find(
+      u => u.matricula === matricula && u.senha === senha
+    );
 
     if (!usuario) {
-      return res.status(401).json({ mensagem: "Matrícula ou senha incorretos." });
+      return res.status(401).json({ mensagem: "Login inválido." });
     }
 
-    // retornar dados do usuário
-    res.status(200).json({ mensagem: "Login realizado com sucesso!", usuario });
+    res.json(usuario);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ mensagem: "Erro interno ao realizar login." });
+    res.status(500).json({ mensagem: "Erro no login." });
   }
 });
 
-// Rota DELETE usando a função importada
 APP.delete("/api/usuarios/:matricula", async (req, res) => {
-  const { matricula } = req.params;
-
   try {
-    const resultado = await excluirUsuario(matricula);
-
-    // Se o model retorna rowCount (do pg)
-    if (resultado && resultado.rowCount === 0) {
-      return res.status(404).json({ message: "Usuário não encontrado" });
-    }
-
+    await excluirUsuario(req.params.matricula);
     res.json({ message: "Usuário excluído com sucesso!" });
   } catch (err) {
-    console.error("Erro ao excluir usuário:", err);
     res.status(500).json({ message: "Erro ao excluir usuário" });
   }
 });
 
-// PUT: Atualizar
 APP.put("/api/usuarios/:matricula", async (req, res) => {
-  const matricula = req.params.matricula;
-  const { nome, senha, ano } = req.body;
-
   try {
-    const usuarioAtualizado = await updateUsuario(matricula, nome, senha, ano);
-
-    if (!usuarioAtualizado) {
-      return res.status(404).json({ mensagem: "Usuário não encontrado!" });
-    }
-
-    res.json({ mensagem: "Usuário atualizado com sucesso!", usuario: usuarioAtualizado });
-
+    const atualizado = await updateUsuario(
+      req.params.matricula,
+      req.body.nome,
+      req.body.senha,
+      req.body.ano
+    );
+    res.json(atualizado);
   } catch (err) {
-    console.error("Erro ao atualizar:", err);
     res.status(500).json({ mensagem: "Erro ao atualizar usuário." });
   }
 });
 
+/* ======================================================
+   CONTEÚDO
+====================================================== */
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------
-
-
-// GET: Listar todos os Conteúdos
 APP.get("/api/conteudo", async (req, res) => {
   try {
     const conteudos = await getAllConteudo();
     res.json(conteudos);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ mensagem: "Erro ao buscar conteúdos" });
   }
 });
 
-//  POST: Adicionar novo Conteúdo 
 APP.post("/api/conteudo", async (req, res) => {
-  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas } = req.body;
-
-  if (!titulo || !tipo || !genero || !url || !trailer || !resenha || !descricao || !plataformas || !temas || !matricula_ger) {
-    console.error("Dados faltantes no POST:", req.body);
-    return res.status(400).json({ mensagem: "Todos os elementos são obrigatórios." });
-  }
-
   try {
-    const novo = await addConteudo(titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas);
-    if (novo) {
-      res.status(201).json(novo);
-    } else {
-      res.status(500).json({ mensagem: "Falha ao inserir no banco de dados." });
-    }
-
+    const novo = await addConteudo(
+      req.body.titulo,
+      req.body.tipo,
+      req.body.genero,
+      req.body.matricula_ger,
+      req.body.url,
+      req.body.trailer,
+      req.body.resenha,
+      req.body.descricao,
+      req.body.plataformas,
+      req.body.temas
+    );
+    res.status(201).json(novo);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ mensagem: "Erro interno do servidor ao adicionar conteúdo." });
+    res.status(500).json({ mensagem: "Erro ao adicionar conteúdo." });
   }
 });
 
-// Rota DELETE usando a função importada
 APP.delete("/api/conteudo/:id_cont", async (req, res) => {
-  const { id_cont } = req.params;
-
   try {
-    const sucesso = await excluirConteudo(id_cont);
-
-    res.json({ message: "Conteudo excluído com sucesso!" });
+    await excluirConteudo(req.params.id_cont);
+    res.json({ message: "Conteúdo excluído com sucesso!" });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Erro ao excluir Conteudo" });
+    res.status(500).json({ message: "Erro ao excluir conteúdo" });
   }
 });
 
-// Atualizar conteúdo existente 
 APP.put("/api/conteudo/:id_cont", async (req, res) => {
-  const id = req.params.id_cont;
-  const { titulo, tipo, genero, matricula_ger, url, trailer, resenha, descricao, plataformas, temas } = req.body;
-
   try {
-    const conteudoAtualizado = await updateConteudo({
-      id,
-      titulo,
-      tipo,
-      genero,
-      matricula_ger,
-      url,
-      trailer,
-      resenha,
-      descricao,
-      plataformas,
-      temas
+    const atualizado = await updateConteudo({
+      id: req.params.id_cont,
+      ...req.body
     });
+    res.json(atualizado);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao atualizar conteúdo." });
+  }
+});
 
-    if (!conteudoAtualizado) {
-      return res.status(404).json({ mensagem: "Conteúdo não encontrado." });
+/* ======================================================
+   CHAT REST (histórico)
+====================================================== */
+
+const ADMIN_ID = "20231214010013";
+
+APP.get("/api/chat/:matricula_ger", async (req, res) => {
+  try {
+    const chatId = await getChatId(req.params.matricula_ger, ADMIN_ID);
+
+    if (!chatId) {
+      return res.status(404).json({ mensagem: "Chat não encontrado." });
     }
 
-    res.json({
-      mensagem: "Conteúdo atualizado com sucesso!",
-      conteudo: conteudoAtualizado,
-    });
+    const mensagens = await listarMensagens(chatId);
+    res.json(mensagens);
+
   } catch (err) {
-    console.error("Erro ao atualizar conteúdo:", err);
-    res.status(500).json({ mensagem: "Erro interno ao atualizar conteúdo." });
+    res.status(500).json({ mensagem: "Erro ao buscar mensagens." });
   }
 });
 
-APP.listen(PORT, () => {
-  console.log("Servidor rodando em:", "http://localhost:" + PORT);
+APP.post("/api/chat", async (req, res) => {
+  console.log("📥 BODY RECEBIDO:", req.body);
+
+  const { matricula_ger, remetente, mensagem } = req.body;
+
+  try {
+    const chatId = await getChatId(matricula_ger, "20231214010013");
+    console.log("🧠 CHAT ID:", chatId);
+
+    await enviarMensagem(chatId, remetente, mensagem);
+    res.status(201).json({ ok: true });
+
+  } catch (err) {
+    console.error("🔥 ERRO REAL:", err);
+    res.status(500).json({ erro: "Falha ao enviar mensagem" });
+  }
+});
+
+
+/* ======================================================
+   SOCKET.IO — CHAT EM TEMPO REAL
+====================================================== */
+
+io.on("connection", (socket) => {
+  console.log("🟢 Conectado:", socket.id);
+
+  socket.on("entrar_chat", (chatId) => {
+    socket.join("chat_" + chatId);
+  });
+
+  socket.on("enviar_mensagem", async ({ chatId, remetente, mensagem }) => {
+    await enviarMensagem(chatId, remetente, mensagem);
+
+    io.to("chat_" + chatId).emit("nova_mensagem", {
+      remetente,
+      mensagem
+    });
+  });
+
+
+  socket.on("disconnect", () => {
+    console.log("🔴 Desconectado:", socket.id);
+  });
+});
+
+
+/* ======================================================
+   START
+====================================================== */
+
+server.listen(PORT, () => {
+  console.log("🔥 Servidor rodando em http://localhost:" + PORT);
 });

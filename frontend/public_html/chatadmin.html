@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Conversas - IFLIX</title>
-    <link rel="icon" href="/frontend/Imagens/logomarca.png">
-    <link rel="stylesheet" href="/frontend/css/chatadmin.css">
-</head>
-<body>
-    <button onclick="history.back()" class="btn">Voltar</button>
+<html lang="pt-BR">
 
-    <div id="chat"><fieldset style="border-radius: 10px;">Administrador ↔ Gerente</fieldset> fkfrifriri</div>
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Gerente ↔ Admin</title>
+  <link rel="stylesheet" href="/frontend/css/chatadmin.css">
+</head>
+
+<body>
+
+  <div class="chat-container">
+    <h2>Chat com Administrador</h2>
+
+    <div id="mensagens" class="mensagens"></div>
+
+    <div class="entrada">
+      <input type="text" id="mensagemInput" placeholder="Digite sua mensagem..." />
+      <button onclick="enviar()">Enviar</button>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/frontend/scripts/chat.js"></script>
 </body>
+
 </html>
